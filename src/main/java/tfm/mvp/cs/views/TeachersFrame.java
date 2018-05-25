@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tfm.mvp.cs.views;
 
 import javax.swing.BoxLayout;
@@ -13,10 +8,7 @@ import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 import javax.swing.JButton;
 
-/**
- *
- * @author borja
- */
+
 public class TeachersFrame extends JFrame {
 
 	private MenuFrame menuFrame;

@@ -1,4 +1,4 @@
-package tfm.mvp.cs.Views;
+package tfm.mvp.cs.views;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 
-import tfm.mvp.cs.Presenters.StudentFormPresenter;
+import tfm.mvp.cs.presenters.StudentFormPresenter;
 
 public class StudentFormView extends JPanel {
 

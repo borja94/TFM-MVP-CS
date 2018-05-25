@@ -1,8 +1,8 @@
-package tfm.mvp.cs.Presenters;
+package tfm.mvp.cs.presenters;
 
 
-import tfm.mvp.cs.Models.Subject;
-import tfm.mvp.cs.Models.SubjectDto;
+import tfm.mvp.cs.models.Subject;
+import tfm.mvp.cs.models.SubjectDto;
 
 public class SubjectFormPresenter {
 

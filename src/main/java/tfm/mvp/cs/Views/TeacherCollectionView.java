@@ -1,11 +1,11 @@
-package tfm.mvp.cs.Views;
+package tfm.mvp.cs.views;
 
 import javax.swing.GroupLayout;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle;
 import javax.swing.table.TableModel;
 
-import tfm.mvp.cs.Presenters.TeachersCollectionPresenter;
+import tfm.mvp.cs.presenters.TeachersCollectionPresenter;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

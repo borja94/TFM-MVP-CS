@@ -1,4 +1,4 @@
-package tfm.mvp.cs.Views;
+package tfm.mvp.cs.views;
 
 
 
@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 
-import tfm.mvp.cs.Presenters.SubjectFormPresenter;
+import tfm.mvp.cs.presenters.SubjectFormPresenter;
 
 public class SubjectFormView extends JPanel {
 

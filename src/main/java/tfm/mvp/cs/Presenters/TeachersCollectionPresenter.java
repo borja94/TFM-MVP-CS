@@ -1,14 +1,14 @@
-package tfm.mvp.cs.Presenters;
+package tfm.mvp.cs.presenters;
 
 import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-import tfm.mvp.cs.Models.Subject;
-import tfm.mvp.cs.Models.Teacher;
-import tfm.mvp.cs.Models.TeacherDto;
-import tfm.mvp.cs.Views.TeacherCollectionView;
+import tfm.mvp.cs.models.Subject;
+import tfm.mvp.cs.models.Teacher;
+import tfm.mvp.cs.models.TeacherDto;
+import tfm.mvp.cs.views.TeacherCollectionView;
 
 public class TeachersCollectionPresenter {
 

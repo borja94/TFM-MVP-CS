@@ -7,7 +7,7 @@ import java.util.logging.*;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
-import tfm.mvp.cs.Views.MenuFrame;
+import tfm.mvp.cs.views.MenuFrame;
 
 public class App {
 

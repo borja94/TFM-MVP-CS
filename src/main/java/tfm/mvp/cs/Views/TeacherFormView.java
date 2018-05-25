@@ -1,4 +1,4 @@
-package tfm.mvp.cs.Views;
+package tfm.mvp.cs.views;
 
 import java.awt.event.ActionEvent;
 
@@ -12,10 +12,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 
-import tfm.mvp.cs.Models.Subject;
-import tfm.mvp.cs.Models.Teacher;
-import tfm.mvp.cs.Presenters.TeacherFormPresenter;
-import tfm.mvp.cs.Presenters.TeachersCollectionPresenter;
+import tfm.mvp.cs.models.Subject;
+import tfm.mvp.cs.models.Teacher;
+import tfm.mvp.cs.presenters.TeacherFormPresenter;
+import tfm.mvp.cs.presenters.TeachersCollectionPresenter;
 
 public class TeacherFormView extends JPanel {
 

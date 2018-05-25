@@ -1,5 +1,5 @@
 
-package tfm.mvp.cs.Models;
+package tfm.mvp.cs.models;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

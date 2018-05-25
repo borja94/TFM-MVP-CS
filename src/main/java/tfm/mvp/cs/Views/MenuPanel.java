@@ -1,4 +1,4 @@
-package tfm.mvp.cs.Views;
+package tfm.mvp.cs.views;
 
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle;

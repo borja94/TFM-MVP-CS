@@ -1,4 +1,4 @@
-package tfm.mvp.cs.Models;
+package tfm.mvp.cs.models;
 
 import java.util.Objects;
 

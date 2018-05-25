@@ -16,7 +16,7 @@ public class SubjectsCollectionPresenter {
 	}
 
 	public void loadTableData() {
-		subjectsCollection = subjectDto.GetAll();
+		subjectsCollection = subjectDto.getAll();
 
 	}
 
@@ -47,7 +47,7 @@ public class SubjectsCollectionPresenter {
 	}
 
 	public void RemoveSubject(int id) {
-		subjectDto.Remove(id);
+		subjectDto.remove(id);
 	}
 
 }

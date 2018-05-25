@@ -30,7 +30,7 @@ public class StudentFormPresenter {
 			int aux = Integer.parseInt(subjectAux.substring(0, subjectAux.indexOf("#")));
 			student.getSubjectCollection().add(new Subject(aux));
 		}
-		studentDto.Insert(student);
+		studentDto.insert(student);
 
 	}
 
@@ -44,12 +44,12 @@ public class StudentFormPresenter {
 			student.getSubjectCollection().add(new Subject(aux));
 		}
 
-		studentDto.Update(student);
+		studentDto.update(student);
 
 	}
 
 	public void loadStudent(int id) {
-		student = studentDto.Get(id);
+		student = studentDto.get(id);
 	}
 
 	public String getStudentName() {
@@ -73,7 +73,7 @@ public class StudentFormPresenter {
 	}
 
 	public int loadSubjects() {
-		subjectsCollection = subjectDto.GetAll();
+		subjectsCollection = subjectDto.getAll();
 		return subjectsCollection.size();
 	}
 

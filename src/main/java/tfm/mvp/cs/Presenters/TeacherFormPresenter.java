@@ -31,7 +31,7 @@ public class TeacherFormPresenter {
 
 		Teacher teacher = teacherFormView.getEditTeacher();
 
-		teacherDto.Insert(teacher);
+		teacherDto.insert(teacher);
 		cleanForm();
 		teacherCollectionPresenter.NotifyUpdateTeacherTableData();
 	}
@@ -40,7 +40,7 @@ public class TeacherFormPresenter {
 
 		Teacher teacher = teacherFormView.getEditTeacher();
 
-		teacherDto.Update(teacher);
+		teacherDto.update(teacher);
 		cleanForm();
 		teacherCollectionPresenter.NotifyUpdateTeacherTableData();
 	}
@@ -102,7 +102,7 @@ public class TeacherFormPresenter {
 	}
 
 	public void loadTeacher(int id) {
-		teacher = teacherDto.Get(id);
+		teacher = teacherDto.get(id);
 	}
 
 	public String getTeacherName() {
@@ -126,7 +126,7 @@ public class TeacherFormPresenter {
 	}
 
 	public int loadSubjects() {
-		subjectsCollection = subjectDto.GetAll();
+		subjectsCollection = subjectDto.getAll();
 		return subjectsCollection.size();
 	}
 

@@ -11,7 +11,7 @@ import tfm.mvp.cs.Views.MenuFrame;
 
 public class App {
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 
 		try {
 			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {

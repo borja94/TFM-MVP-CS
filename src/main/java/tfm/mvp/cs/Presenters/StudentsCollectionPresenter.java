@@ -17,7 +17,7 @@ public class StudentsCollectionPresenter {
 	}
 
 	public void loadTableData() {
-		studentCollection = studentDto.GetAll();
+		studentCollection = studentDto.getAll();
 	}
 
 	public int getNumColumns() {
@@ -56,7 +56,7 @@ public class StudentsCollectionPresenter {
 	}
 
 	public void RemoveStudent(int id) {
-			studentDto.Remove(id);
+			studentDto.remove(id);
 	}
 
 }

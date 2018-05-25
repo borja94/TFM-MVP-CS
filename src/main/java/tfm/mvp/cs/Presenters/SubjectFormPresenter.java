@@ -16,21 +16,21 @@ public class SubjectFormPresenter {
 	public void InsertNewStudent(String title, int course) {
 		
 			Subject subject = new Subject(0, title, course);
-			subjectDto.Insert(subject);
+			subjectDto.insert(subject);
 		
 	}
 
 	public void UpdateStudent(String title, int course, int id) {
 		
 			Subject subject = new Subject(id, title, course);
-			subjectDto.Update(subject);
+			subjectDto.update(subject);
 
 		
 	}
 
 	public void loadSubject(int id) {
 		
-			subject = subjectDto.Get(id);
+			subject = subjectDto.get(id);
 		
 	}
 	public String getSubjectTitle() {

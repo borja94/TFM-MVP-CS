@@ -18,9 +18,7 @@ public class TeacherFormPresenter {
 	private Teacher teacher;
 	private List<Subject> subjectsCollection;
 	private TeacherFormView teacherFormView;
-	/*
-	 * private boolean EditMode; private int TeacherSelectedId;
-	 */
+	
 	private TeachersCollectionPresenter teacherCollectionPresenter;
 
 	public TeacherFormPresenter(TeacherFormView teacherFormView) {

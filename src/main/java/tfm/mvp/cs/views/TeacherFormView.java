@@ -171,11 +171,11 @@ public class TeacherFormView extends JPanel {
 		editMode = true;
 		teacherFormLabel.setText(EDIT_TEACHE_LABEL_TEXT);
 		teacherSelectedId = id;
-		teacherFormPresenter.NotifyEditTeacherMode(id);
+		teacherFormPresenter.notifyEditTeacherMode(id);
 	}
 
 	private void updateSubjectList() {
-		teacherFormPresenter.NotifyUpdateSubjectList();
+		teacherFormPresenter.notifyUpdateSubjectList();
 	}
 
 	private void addSubjectButtonActionPerformed() {
@@ -207,9 +207,9 @@ public class TeacherFormView extends JPanel {
 
 		if (!name.isEmpty() && !surname.isEmpty()) {
 			if (editMode)
-				teacherFormPresenter.NotifyUpdateTeacher();
+				teacherFormPresenter.notifyUpdateTeacher();
 			else
-				teacherFormPresenter.NotifyInsertNewTeacher();
+				teacherFormPresenter.notifyInsertNewTeacher();
 		}
 	}
 

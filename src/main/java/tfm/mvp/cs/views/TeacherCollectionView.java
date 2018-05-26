@@ -89,19 +89,19 @@ public class TeacherCollectionView extends JPanel {
 	}
 
 	public void updateTeacherTableData() {
-		teacherCollectionPresenter.NotifyUpdateTeacherTableData();
+		teacherCollectionPresenter.notifyUpdateTeacherTableData();
 	}
 
 	private void deleteTeacherButtonActionPerformed() {
-		teacherCollectionPresenter.NotifyDeleteTeacher();
+		teacherCollectionPresenter.notifyDeleteTeacher();
 	}
 
 	private void editTeacherButtonActionPerformed() {
-		teacherCollectionPresenter.NotifyEditTeacher();
+		teacherCollectionPresenter.notifyEditTeacher();
 	}
 
 	private void newTeacherButtonActionPerformed() {
-		teacherCollectionPresenter.NotifyNewTeacher();
+		teacherCollectionPresenter.notifyNewTeacher();
 	}
 
 	public JButton getDeleteTeacherButton() {

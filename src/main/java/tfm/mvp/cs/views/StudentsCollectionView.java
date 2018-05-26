@@ -113,7 +113,7 @@ public class StudentsCollectionView extends JPanel {
 		if (selectedRow != -1) {
 			int dialogResult = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar al alumno");
 			if (dialogResult == JOptionPane.YES_OPTION) {
-				studentCollectionPresenter.RemoveStudent((Integer.parseInt(studentsTableModel.getValueAt(selectedRow, 0).toString())));
+				studentCollectionPresenter.removeStudent((Integer.parseInt(studentsTableModel.getValueAt(selectedRow, 0).toString())));
 				updateStudentTableData();
 			}
 		}

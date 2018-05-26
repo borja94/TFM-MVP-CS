@@ -45,8 +45,8 @@ public class Teacher {
         return surname;
     }
 
-    public void setSurname(String Surname) {
-        this.surname = Surname;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public List<Subject> getSubjectCollection() {

@@ -9,7 +9,7 @@ public class SubjectsCollectionPresenter {
 
 	private SubjectDto subjectDto;
 	private List<Subject> subjectsCollection;
-	private final String columnNames[] = { "ID", "Titulo", "Curso" };
+	private static final String[] columnNames = { "ID", "Titulo", "Curso" };
 
 	public SubjectsCollectionPresenter() {
 		subjectDto = new SubjectDto();
@@ -36,7 +36,7 @@ public class SubjectsCollectionPresenter {
 
 		switch (column) {
 		case 0:
-			return ((Integer) subjectsCollection.get(row).getId()).toString();
+			return subjectsCollection.get(row).getId().toString();
 		case 1:
 			return subjectsCollection.get(row).getTitle();
 		case 2:
@@ -46,7 +46,7 @@ public class SubjectsCollectionPresenter {
 		}
 	}
 
-	public void RemoveSubject(int id) {
+	public void removeSubject(int id) {
 		subjectDto.remove(id);
 	}
 

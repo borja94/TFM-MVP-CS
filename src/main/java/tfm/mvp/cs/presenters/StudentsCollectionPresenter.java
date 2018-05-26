@@ -10,7 +10,7 @@ public class StudentsCollectionPresenter {
 
 	private StudentDto studentDto;
 	private List<Student> studentCollection;
-	private final String columnNames[] = { "ID", "Nombre", "Apellidos", "Asignaturas" };
+	private static final String[] COLUMN_NAMES = { "ID", "Nombre", "Apellidos", "Asignaturas" };
 
 	public StudentsCollectionPresenter() {
 		studentDto = new StudentDto();
@@ -21,11 +21,11 @@ public class StudentsCollectionPresenter {
 	}
 
 	public int getNumColumns() {
-		return columnNames.length;
+		return COLUMN_NAMES.length;
 	}
 
 	public String getColumnName(int position) {
-		return columnNames[position];
+		return COLUMN_NAMES[position];
 	}
 
 	public int getNumRows() {
@@ -42,20 +42,20 @@ public class StudentsCollectionPresenter {
 		case 2:
 			return studentCollection.get(row).getSurname();
 		case 3:
-			String result = "";
+			StringBuilder result = new StringBuilder();
 			for (Subject subject : studentCollection.get(row).getSubjectCollection()) {
-				if (result == "")
-					result = subject.getTitle();
+				if (result.toString() == "")
+					result.append(subject.getTitle());
 				else
-					result += "," + subject.getTitle();
+					result.append("," + subject.getTitle());
 			}
-			return result;
+			return result.toString();
 		default:
 			return null;
 		}
 	}
 
-	public void RemoveStudent(int id) {
+	public void removeStudent(int id) {
 			studentDto.remove(id);
 	}
 

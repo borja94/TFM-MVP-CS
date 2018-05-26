@@ -27,37 +27,37 @@ public class TeacherFormPresenter {
 		subjectDto = new SubjectDto();
 	}
 
-	public void NotifyInsertNewTeacher() {
+	public void notifyInsertNewTeacher() {
 
-		Teacher teacher = teacherFormView.getEditTeacher();
+		Teacher teacherAux = teacherFormView.getEditTeacher();
 
-		teacherDto.insert(teacher);
+		teacherDto.insert(teacherAux);
 		cleanForm();
-		teacherCollectionPresenter.NotifyUpdateTeacherTableData();
+		teacherCollectionPresenter.notifyUpdateTeacherTableData();
 	}
 
-	public void NotifyUpdateTeacher() {
+	public void notifyUpdateTeacher() {
 
-		Teacher teacher = teacherFormView.getEditTeacher();
+		Teacher teacherAux = teacherFormView.getEditTeacher();
 
-		teacherDto.update(teacher);
+		teacherDto.update(teacherAux);
 		cleanForm();
-		teacherCollectionPresenter.NotifyUpdateTeacherTableData();
+		teacherCollectionPresenter.notifyUpdateTeacherTableData();
 	}
 
-	public void NotifyUpdateSubjectList() {
+	public void notifyUpdateSubjectList() {
 
-		UpdateSubjectList(null);
+		updateSubjectList(null);
 	}
 
-	private void UpdateSubjectList(List<String> teacherSubjectCollection) {
+	private void updateSubjectList(List<String> teacherSubjectCollection) {
 		teacherFormView.setUnassignedSubjectModel(new DefaultListModel<>());
 
 		teacherFormView.setAssignedSubjectModel(new DefaultListModel<>());
 
 		for (int i = 0; i < loadSubjects(); i++) {
 			String subject = getSubjectByPosition(i);
-			if (teacherSubjectCollection != null && teacherSubjectCollection.contains(subject.toString())) {
+			if (teacherSubjectCollection != null && teacherSubjectCollection.contains(subject)) {
 				teacherFormView.getAssignedSubjectModel().addElement(subject);
 			} else {
 				teacherFormView.getUnassignedSubjectModel().addElement(subject);
@@ -70,27 +70,27 @@ public class TeacherFormPresenter {
 	private void cleanForm() {
 
 		teacherFormView.cleanForm();
-		UpdateSubjectList(null);
+		updateSubjectList(null);
 
 	}
 
-	public void NotifyRemoveSubject() {
+	public void notifyRemoveSubject() {
 		int[] selectedIndex = teacherFormView.getAssignSubjectCollection().getSelectedIndices();
 
 		for (int i = selectedIndex.length - 1; i >= 0; i--) {
 			int index = selectedIndex[i];
-			String item = teacherFormView.getAssignedSubjectModel().getElementAt(index).toString();
+			String item = teacherFormView.getAssignedSubjectModel().getElementAt(index);
 			teacherFormView.getUnassignedSubjectModel().addElement(item);
 			teacherFormView.getAssignedSubjectModel().remove(index);
 		}
 	}
 
 
-	public void NotifyNewTeacherMode() {
+	public void notifyNewTeacherMode() {
 		cleanForm();
 	}
 
-	public void NotifyEditTeacherMode(int id) {
+	public void notifyEditTeacherMode(int id) {
 		
 		loadTeacher(id);
 		teacherFormView.setEditTeacher(teacher);
@@ -98,7 +98,7 @@ public class TeacherFormPresenter {
 		for (int i = 0; i < getTeacherNumSubject(); i++) {
 			subject.add(getTeacherSubject(i));
 		}
-		UpdateSubjectList(subject);
+		updateSubjectList(subject);
 	}
 
 	public void loadTeacher(int id) {

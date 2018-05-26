@@ -16,7 +16,6 @@ public class StudentsFrame extends JFrame {
 	private StudentFormView studentFormView;
 	private StudentsCollectionView studentsCollectionView;
 
-	private JButton returnMenuFrameButton;
 
 	/**
 	 * Creates new form StudentsFrame
@@ -33,8 +32,8 @@ public class StudentsFrame extends JFrame {
 
 
 	private void initComponents() {
-
-		returnMenuFrameButton = new JButton();
+		
+		JButton returnMenuFrameButton= new JButton();
 
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 

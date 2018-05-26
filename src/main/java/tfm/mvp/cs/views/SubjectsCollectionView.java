@@ -17,7 +17,7 @@ import tfm.mvp.cs.presenters.SubjectsCollectionPresenter;
 
 public class SubjectsCollectionView extends JPanel {
 
-	private TableModel SubjectsTableModel;
+	private TableModel subjectsTableModel;
 
 	private JButton deleteButton;
 	private JButton editButton;
@@ -107,8 +107,8 @@ public class SubjectsCollectionView extends JPanel {
 				tableData[i][j] = subjectsCollectionPresenter.getSubjectAtribute(j, i);
 			}
 		}
-		SubjectsTableModel = new DefaultTableModel(tableData, columns);
-		subjectTable.setModel(SubjectsTableModel);
+		subjectsTableModel = new DefaultTableModel(tableData, columns);
+		subjectTable.setModel(subjectsTableModel);
 	}
 
 	private void deleteButtonActionPerformed() {
@@ -117,7 +117,7 @@ public class SubjectsCollectionView extends JPanel {
 			int dialogResult = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar al alumno");
 			if (dialogResult == JOptionPane.YES_OPTION) {
 				subjectsCollectionPresenter
-						.RemoveSubject(Integer.parseInt(SubjectsTableModel.getValueAt(selectedRow, 0).toString()));
+						.removeSubject(Integer.parseInt(subjectsTableModel.getValueAt(selectedRow, 0).toString()));
 				updateSubjectsTableData();
 			}
 		}
@@ -127,7 +127,7 @@ public class SubjectsCollectionView extends JPanel {
 
 		int selectedRow = subjectTable.getSelectedRow();
 		if (selectedRow != -1)
-			subjectFormView.editSubjectMode(Integer.parseInt(SubjectsTableModel.getValueAt(selectedRow, 0).toString()));
+			subjectFormView.editSubjectMode(Integer.parseInt(subjectsTableModel.getValueAt(selectedRow, 0).toString()));
 	}
 
 	private void newSubjectButtonActionPerformed() {
@@ -135,11 +135,11 @@ public class SubjectsCollectionView extends JPanel {
 	}
 
 	public TableModel getSubjectsTableModel() {
-		return SubjectsTableModel;
+		return subjectsTableModel;
 	}
 
 	public void setSubjectsTableModel(TableModel subjectsTableModel) {
-		SubjectsTableModel = subjectsTableModel;
+		this.subjectsTableModel = subjectsTableModel;
 	}
 
 	public JButton getDeleteButton() {

@@ -217,9 +217,9 @@ public class StudentFormView extends JPanel {
 
 		if (!name.isEmpty() && !surname.isEmpty()) {
 			if (editMode)
-				studentFormPresenter.UpdateStudent(name, surname, assignedSubjectModel, studentSelectedId);
+				studentFormPresenter.updateStudent(name, surname, assignedSubjectModel, studentSelectedId);
 			else
-				studentFormPresenter.InsertNewStudent(name, surname, assignedSubjectModel);
+				studentFormPresenter.insertNewStudent(name, surname, assignedSubjectModel);
 			studentCollectionView.updateStudentTableData();
 		}
 	}

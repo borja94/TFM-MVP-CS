@@ -45,7 +45,7 @@ public class SubjectFormView extends JPanel {
 		courseInpitLabel = new JLabel();
 		saveButton = new JButton();
 
-		subjectFormLabel.setText("Nueva asignatura");
+		subjectFormLabel.setText(NEW_SUBJECT_LABEL_TEXT);
 
 		titleInputLabel.setText("Título");
 
@@ -102,9 +102,9 @@ public class SubjectFormView extends JPanel {
 
 		if (!name.isEmpty() && !course.isEmpty()) {
 			if (editMode) {
-				subjectFormPresenter.UpdateStudent(name, Integer.parseInt(course), subjectSelectedId);
+				subjectFormPresenter.updateStudent(name, Integer.parseInt(course), subjectSelectedId);
 			} else {
-				subjectFormPresenter.InsertNewStudent(name, Integer.parseInt(course));
+				subjectFormPresenter.insertNewStudent(name, Integer.parseInt(course));
 			}
 			
 			 subjectCollectionView.updateSubjectsTableData();

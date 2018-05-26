@@ -100,7 +100,7 @@ public class TeacherDto extends Dto {
 
 	public List<Teacher> getAll() {
 
-		List<Teacher> result = new ArrayList<Teacher>();
+		List<Teacher> result = new ArrayList<>();
 		Connection conexion = null;
 		Statement sentencia = null;
 		ResultSet rs = null;

@@ -7,12 +7,12 @@ import javax.swing.table.DefaultTableModel;
 
 import tfm.mvp.cs.models.Subject;
 import tfm.mvp.cs.models.Teacher;
-import tfm.mvp.cs.models.TeacherDto;
+import tfm.mvp.cs.models.TeacherDao;
 import tfm.mvp.cs.views.TeacherCollectionView;
 
 public class TeachersCollectionPresenter {
 
-	private TeacherDto teacherDto;
+	private TeacherDao teacherDao;
 	private List<Teacher> teacherCollection;
 	private static final String[] columnNames = { "ID", "Nombre", "Apellidos", "Asignaturas" };
 	private TeacherCollectionView teacherCollectionView;
@@ -21,12 +21,12 @@ public class TeachersCollectionPresenter {
 	public TeachersCollectionPresenter(TeacherCollectionView teacherCollectionView,
 			TeacherFormPresenter teacherFormPresenter) {
 		this.teacherCollectionView = teacherCollectionView;
-		teacherDto = new TeacherDto();
+		teacherDao = new TeacherDao();
 		this.teacherFormPresenter = teacherFormPresenter;
 	}
 
 	public void loadTableData() {
-		teacherCollection = teacherDto.getAll();
+		teacherCollection = teacherDao.getAll();
 	}
 
 	public int getNumColumns() {
@@ -65,7 +65,7 @@ public class TeachersCollectionPresenter {
 	}
 
 	public void removeTeacher(int id) {
-		teacherDto.remove(id);
+		teacherDao.remove(id);
 	}
 
 	public void notifyUpdateTeacherTableData() {

@@ -6,15 +6,15 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 
 import tfm.mvp.cs.models.Subject;
-import tfm.mvp.cs.models.SubjectDto;
+import tfm.mvp.cs.models.SubjectDao;
 import tfm.mvp.cs.models.Teacher;
-import tfm.mvp.cs.models.TeacherDto;
+import tfm.mvp.cs.models.TeacherDao;
 import tfm.mvp.cs.views.TeacherFormView;
 
 public class TeacherFormPresenter {
 
-	private TeacherDto teacherDto;
-	private SubjectDto subjectDto;
+	private TeacherDao teacherDao;
+	private SubjectDao subjectDao;
 	private Teacher teacher;
 	private List<Subject> subjectsCollection;
 	private TeacherFormView teacherFormView;
@@ -23,15 +23,15 @@ public class TeacherFormPresenter {
 
 	public TeacherFormPresenter(TeacherFormView teacherFormView) {
 		this.teacherFormView = teacherFormView;
-		teacherDto = new TeacherDto();
-		subjectDto = new SubjectDto();
+		teacherDao = new TeacherDao();
+		subjectDao = new SubjectDao();
 	}
 
 	public void notifyInsertNewTeacher() {
 
 		Teacher teacherAux = teacherFormView.getEditTeacher();
 
-		teacherDto.insert(teacherAux);
+		teacherDao.insert(teacherAux);
 		cleanForm();
 		teacherCollectionPresenter.notifyUpdateTeacherTableData();
 	}
@@ -40,7 +40,7 @@ public class TeacherFormPresenter {
 
 		Teacher teacherAux = teacherFormView.getEditTeacher();
 
-		teacherDto.update(teacherAux);
+		teacherDao.update(teacherAux);
 		cleanForm();
 		teacherCollectionPresenter.notifyUpdateTeacherTableData();
 	}
@@ -102,7 +102,7 @@ public class TeacherFormPresenter {
 	}
 
 	public void loadTeacher(int id) {
-		teacher = teacherDto.get(id);
+		teacher = teacherDao.get(id);
 	}
 
 	public String getTeacherName() {
@@ -126,7 +126,7 @@ public class TeacherFormPresenter {
 	}
 
 	public int loadSubjects() {
-		subjectsCollection = subjectDto.getAll();
+		subjectsCollection = subjectDao.getAll();
 		return subjectsCollection.size();
 	}
 

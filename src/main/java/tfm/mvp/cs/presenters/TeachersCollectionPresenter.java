@@ -10,19 +10,16 @@ import tfm.mvp.cs.models.Teacher;
 import tfm.mvp.cs.models.TeacherDao;
 import tfm.mvp.cs.views.TeacherCollectionView;
 
-public class TeachersCollectionPresenter {
+public class TeachersCollectionPresenter implements ITeacherCollectionViewPresenter {
 
 	private TeacherDao teacherDao;
 	private List<Teacher> teacherCollection;
 	private static final String[] columnNames = { "ID", "Nombre", "Apellidos", "Asignaturas" };
 	private TeacherCollectionView teacherCollectionView;
-	private TeacherFormPresenter teacherFormPresenter;
+	private ITeacherFormPresenter iTeacherFormPresenter;
 
-	public TeachersCollectionPresenter(TeacherCollectionView teacherCollectionView,
-			TeacherFormPresenter teacherFormPresenter) {
-		this.teacherCollectionView = teacherCollectionView;
+	public TeachersCollectionPresenter() {
 		teacherDao = new TeacherDao();
-		this.teacherFormPresenter = teacherFormPresenter;
 	}
 
 	public void loadTableData() {
@@ -100,12 +97,23 @@ public class TeachersCollectionPresenter {
 	public void editTeacher() {
 		int selectedRow = teacherCollectionView.getTeachersTable().getSelectedRow();
 		if (selectedRow != -1)
-			teacherFormPresenter.editTeacherMode(Integer
+			iTeacherFormPresenter.editTeacherMode(Integer
 					.parseInt(teacherCollectionView.getTeachersTableModel().getValueAt(selectedRow, 0).toString()));
 	}
 
 	public void newTeacher() {
-		teacherFormPresenter.newTeacherMode();
+		iTeacherFormPresenter.newTeacherMode();
+	}
+
+	@Override
+	public void setTeacherCollectionView(TeacherCollectionView teacherCollectionView) {
+		this.teacherCollectionView = teacherCollectionView;
+
+	}
+
+	public void setTeacherFormPresenter(ITeacherFormPresenter teacherFormPresenter) {
+		this.iTeacherFormPresenter = teacherFormPresenter;
+
 	}
 
 }

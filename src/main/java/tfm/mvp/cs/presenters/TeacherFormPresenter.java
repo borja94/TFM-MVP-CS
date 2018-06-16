@@ -11,7 +11,7 @@ import tfm.mvp.cs.models.Teacher;
 import tfm.mvp.cs.models.TeacherDao;
 import tfm.mvp.cs.views.TeacherFormView;
 
-public class TeacherFormPresenter {
+public class TeacherFormPresenter implements ITeacherFormPresenter, ITeacherFormViewPresenter{
 
 	private TeacherDao teacherDao;
 	private SubjectDao subjectDao;
@@ -21,8 +21,7 @@ public class TeacherFormPresenter {
 	
 	private TeachersCollectionPresenter teacherCollectionPresenter;
 
-	public TeacherFormPresenter(TeacherFormView teacherFormView) {
-		this.teacherFormView = teacherFormView;
+	public TeacherFormPresenter() {
 		teacherDao = new TeacherDao();
 		subjectDao = new SubjectDao();
 	}
@@ -72,17 +71,6 @@ public class TeacherFormPresenter {
 		teacherFormView.cleanForm();
 		updateSubjectList(null);
 
-	}
-
-	public void removeSubject() {
-		int[] selectedIndex = teacherFormView.getAssignSubjectCollection().getSelectedIndices();
-
-		for (int i = selectedIndex.length - 1; i >= 0; i--) {
-			int index = selectedIndex[i];
-			String item = teacherFormView.getAssignedSubjectModel().getElementAt(index);
-			teacherFormView.getUnassignedSubjectModel().addElement(item);
-			teacherFormView.getAssignedSubjectModel().remove(index);
-		}
 	}
 
 
@@ -136,6 +124,12 @@ public class TeacherFormPresenter {
 
 	public void setTeachetCollectionPresenter(TeachersCollectionPresenter teacherCollectionPresenter) {
 		this.teacherCollectionPresenter = teacherCollectionPresenter;
+	}
+
+	@Override
+	public void setTeacherFormView(TeacherFormView teacherFormView) {
+		this.teacherFormView = teacherFormView;
+		
 	}
 
 }

@@ -1,7 +1,5 @@
 package tfm.mvp.cs.views;
 
-
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,7 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 
-import tfm.mvp.cs.presenters.SubjectFormPresenter;
+import tfm.mvp.cs.models.Subject;
+import tfm.mvp.cs.presenters.ISubjectFormViewPresenter;
 
 public class SubjectFormView extends JPanel {
 
@@ -28,11 +27,11 @@ public class SubjectFormView extends JPanel {
 	private JLabel titleInputLabel;
 	private JLabel courseInpitLabel;
 
-	private SubjectFormPresenter subjectFormPresenter;
-	private SubjectsCollectionView subjectCollectionView;
+	private ISubjectFormViewPresenter iSubjectFormViewPresenter;
 
-	public SubjectFormView() {
-		subjectFormPresenter = new SubjectFormPresenter();
+	public SubjectFormView(ISubjectFormViewPresenter subjectFormViewPresenter) {
+		iSubjectFormViewPresenter = subjectFormViewPresenter;
+		iSubjectFormViewPresenter.setSubjectFormView(this);
 		initComponents();
 	}
 
@@ -102,34 +101,27 @@ public class SubjectFormView extends JPanel {
 
 		if (!name.isEmpty() && !course.isEmpty()) {
 			if (editMode) {
-				subjectFormPresenter.updateStudent(name, Integer.parseInt(course), subjectSelectedId);
+				iSubjectFormViewPresenter.updateStudent(name, Integer.parseInt(course), subjectSelectedId);
 			} else {
-				subjectFormPresenter.insertNewStudent(name, Integer.parseInt(course));
+				iSubjectFormViewPresenter.insertNewStudent(name, Integer.parseInt(course));
 			}
-			
-			 subjectCollectionView.updateSubjectsTableData();
-			 
 		}
 	}
-	
-	public void newSubjectMode() {
+
+	public void cleanForm() {
 		subjectFormLabel.setText(NEW_SUBJECT_LABEL_TEXT);
 		titleInput.setText("");
 		courseInput.setText("");
 		subjectSelectedId = 0;
 		editMode = false;
 	}
-	public void editSubjectMode(int id) {
-		subjectFormLabel.setText(EDIT_SUBJECT_LABEL_TEXT);
-		subjectSelectedId = id;
-		editMode = true;
-		subjectFormPresenter.loadSubject(id);
-		titleInput.setText(subjectFormPresenter.getSubjectTitle());
-		courseInput.setText(subjectFormPresenter.getSubjectCourse());
-	}
 
-	public void setSubjectCollectionView(SubjectsCollectionView subjectCollectionView) {
-		this.subjectCollectionView = subjectCollectionView;
+	public void setEditSubject(Subject subject) {
+		subjectFormLabel.setText(EDIT_SUBJECT_LABEL_TEXT);
+		subjectSelectedId = subject.getId();
+		editMode = true;
+		titleInput.setText(subject.getTitle());
+		courseInput.setText(subject.getCourse().toString());
 	}
 
 	public int getSubjectSelectedId() {
@@ -195,8 +187,5 @@ public class SubjectFormView extends JPanel {
 	public static String getEditsubjectlabeltext() {
 		return EDIT_SUBJECT_LABEL_TEXT;
 	}
-	
-	
-	
-	
+
 }

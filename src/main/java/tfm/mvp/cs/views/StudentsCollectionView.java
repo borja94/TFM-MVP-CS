@@ -5,14 +5,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import tfm.mvp.cs.presenters.StudentsCollectionPresenter;
+import tfm.mvp.cs.presenters.IStudentCollectionViewPresenter;
 
 public class StudentsCollectionView extends JPanel {
 
@@ -23,12 +21,11 @@ public class StudentsCollectionView extends JPanel {
 	private JButton newStudentButton;
 	private JTable studentsTable;
 	private JScrollPane tableScrollPane;
-	private StudentFormView studentFormView;
-	private StudentsCollectionPresenter studentCollectionPresenter;
+	private IStudentCollectionViewPresenter iStudentCollectionViewPresenter;
 
-	public StudentsCollectionView(StudentFormView studentFormView) {
-		this.studentFormView = studentFormView;
-		studentCollectionPresenter = new StudentsCollectionPresenter();
+	public StudentsCollectionView(IStudentCollectionViewPresenter studentCollectionViewPresenter) {
+		iStudentCollectionViewPresenter = studentCollectionViewPresenter;
+		iStudentCollectionViewPresenter.setStudentCollectionView(this);
 		initComponents();
 	}
 
@@ -92,44 +89,20 @@ public class StudentsCollectionView extends JPanel {
 	}
 
 	public void updateStudentTableData() {
-		studentCollectionPresenter.loadTableData();
-		String[] columns = new String[studentCollectionPresenter.getNumColumns()];
-		String[][] tableData = new String[studentCollectionPresenter.getNumRows()][studentCollectionPresenter
-				.getNumColumns()];
-		for (int i = 0; i < columns.length; i++) {
-			columns[i]=studentCollectionPresenter.getColumnName(i);
-		}
-		for (int i = 0; i < studentCollectionPresenter.getNumRows(); i++) {
-			for (int j = 0; j < studentCollectionPresenter.getNumColumns(); j++) {
-				tableData[i][j] = studentCollectionPresenter.getStudentAtribute(j, i);
-			}
-		}
-		studentsTableModel = new DefaultTableModel(tableData, columns);
-		studentsTable.setModel(studentsTableModel);
+		iStudentCollectionViewPresenter.updateStudentTableData();
 	}
 
 	private void onDeleteStudentButtonActionPerformed() {
-		int selectedRow = studentsTable.getSelectedRow();
-		if (selectedRow != -1) {
-			int dialogResult = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar al alumno");
-			if (dialogResult == JOptionPane.YES_OPTION) {
-				studentCollectionPresenter.removeStudent((Integer.parseInt(studentsTableModel.getValueAt(selectedRow, 0).toString())));
-				updateStudentTableData();
-			}
-		}
+		iStudentCollectionViewPresenter.removeStudent();
 	}
 
 	private void onEditStudentButtonActionPerformed() {
 
-		int selectedRow = studentsTable.getSelectedRow();
-		if (selectedRow != -1) {
-			studentFormView.editTeacherMode(Integer.parseInt(studentsTableModel.getValueAt(selectedRow, 0).toString()));
-
-		}
+		iStudentCollectionViewPresenter.editStudentMode();
 	}
 
 	private void onNewStudentButtonActionPerformed() {
-		studentFormView.newTeacherMode();
+		iStudentCollectionViewPresenter.newStudentMode();
 	}
 
 	public TableModel getStudentsTableModel() {

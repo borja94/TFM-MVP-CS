@@ -5,15 +5,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import tfm.mvp.cs.presenters.SubjectsCollectionPresenter;
+import tfm.mvp.cs.presenters.ISubjectCollectionViewPresenter;
 
 public class SubjectsCollectionView extends JPanel {
 
@@ -25,16 +23,14 @@ public class SubjectsCollectionView extends JPanel {
 	private JTable subjectTable;
 	private JScrollPane tableScrollPane;
 
-	private SubjectFormView subjectFormView;
-	private SubjectsCollectionPresenter subjectsCollectionPresenter;
+	private ISubjectCollectionViewPresenter iSubjectsCollectionViewPresenter;
 
-	public SubjectsCollectionView(SubjectFormView subjectFormView) {
+	public SubjectsCollectionView(ISubjectCollectionViewPresenter subjectCollectionViewPresenter) {
 
-		subjectsCollectionPresenter = new SubjectsCollectionPresenter();
-		this.subjectFormView = subjectFormView;
+		iSubjectsCollectionViewPresenter = subjectCollectionViewPresenter;
+		subjectCollectionViewPresenter.setSubjectCollectionView(this);
 		initComponents();
 		updateSubjectsTableData();
-
 	}
 
 	private void initComponents() {
@@ -95,43 +91,20 @@ public class SubjectsCollectionView extends JPanel {
 	}
 
 	public void updateSubjectsTableData() {
-		subjectsCollectionPresenter.loadTableData();
-		String[] columns = new String[subjectsCollectionPresenter.getNumColumns()];
-		String[][] tableData = new String[subjectsCollectionPresenter.getNumRows()][subjectsCollectionPresenter
-				.getNumColumns()];
-		for (int i = 0; i < columns.length; i++) {
-			columns[i] = subjectsCollectionPresenter.getColumnName(i);
-		}
-		for (int i = 0; i < subjectsCollectionPresenter.getNumRows(); i++) {
-			for (int j = 0; j < subjectsCollectionPresenter.getNumColumns(); j++) {
-				tableData[i][j] = subjectsCollectionPresenter.getSubjectAtribute(j, i);
-			}
-		}
-		subjectsTableModel = new DefaultTableModel(tableData, columns);
-		subjectTable.setModel(subjectsTableModel);
+		iSubjectsCollectionViewPresenter.updateSubjectsTableData();
 	}
 
 	private void onDeleteButtonActionPerformed() {
-		int selectedRow = subjectTable.getSelectedRow();
-		if (selectedRow != -1) {
-			int dialogResult = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar al alumno");
-			if (dialogResult == JOptionPane.YES_OPTION) {
-				subjectsCollectionPresenter
-						.removeSubject(Integer.parseInt(subjectsTableModel.getValueAt(selectedRow, 0).toString()));
-				updateSubjectsTableData();
-			}
-		}
+		iSubjectsCollectionViewPresenter.removeSubject();
 	}
 
 	private void onEditButtonActionPerformed() {
 
-		int selectedRow = subjectTable.getSelectedRow();
-		if (selectedRow != -1)
-			subjectFormView.editSubjectMode(Integer.parseInt(subjectsTableModel.getValueAt(selectedRow, 0).toString()));
+		iSubjectsCollectionViewPresenter.editMode();
 	}
 
 	private void onNewSubjectButtonActionPerformed() {
-		subjectFormView.newSubjectMode();
+		iSubjectsCollectionViewPresenter.newSubjectMode();
 	}
 
 	public TableModel getSubjectsTableModel() {
@@ -181,5 +154,7 @@ public class SubjectsCollectionView extends JPanel {
 	public void setTableScrollPane(JScrollPane tableScrollPane) {
 		this.tableScrollPane = tableScrollPane;
 	}
+	
+	
 
 }

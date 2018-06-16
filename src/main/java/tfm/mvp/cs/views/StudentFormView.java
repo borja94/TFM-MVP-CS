@@ -2,8 +2,6 @@ package tfm.mvp.cs.views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -14,7 +12,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 
-import tfm.mvp.cs.presenters.StudentFormPresenter;
+import tfm.mvp.cs.models.Student;
+import tfm.mvp.cs.presenters.IStudentFormViewPresenter;
 
 public class StudentFormView extends JPanel {
 
@@ -30,20 +29,21 @@ public class StudentFormView extends JPanel {
 	private JLabel surnameInputLabel;
 	private JScrollPane unassignSubjectPane;
 	private JScrollPane assignSubjectPane;
-	private StudentsCollectionView studentCollectionView;
 
-	private DefaultListModel<String> unassignedSubjectModel2;
+	
+	private DefaultListModel<String> unassignedSubjectModel;
 	private DefaultListModel<String> assignedSubjectModel;
 	private boolean editMode;
 	private int studentSelectedId;
-	private StudentFormPresenter studentFormPresenter;
+	private IStudentFormViewPresenter iStudentFormViewPresenter;
 	private static final String NEW_STUDENT_LABEL_TEXT = "Nuevo alumno";
 	private static final String EDIT_STUDENT_LABEL_TEXT = "Editar alumno";
 
-	public StudentFormView() {
-		studentFormPresenter = new StudentFormPresenter();
+	public StudentFormView(IStudentFormViewPresenter studentFormViewPresenter) {
+		iStudentFormViewPresenter = studentFormViewPresenter;
+		iStudentFormViewPresenter.setStudentFormView(this);
+		
 		initComponents();
-		updateSubjectList(null);
 	}
 
 	private void initComponents() {
@@ -93,6 +93,7 @@ public class StudentFormView extends JPanel {
 		});
 
 		initComponentsPosition();
+		iStudentFormViewPresenter.updateSubjectList();
 	}
 
 	private void initComponentsPosition() {
@@ -149,53 +150,24 @@ public class StudentFormView extends JPanel {
 
 	}
 
-	public void newTeacherMode() {
+	public void cleanForm() {
 		studentFormLabel.setText(NEW_STUDENT_LABEL_TEXT);
 		nameInput.setText("");
 		surnameInput.setText("");
-		updateSubjectList(null);
 		studentSelectedId = 0;
 		editMode = false;
 	}
 
-	public void editTeacherMode(int id) {
-		studentFormLabel.setText(EDIT_STUDENT_LABEL_TEXT);
-		studentSelectedId = id;
-		editMode = true;
-		studentFormPresenter.loadStudent(id);
-		nameInput.setText(studentFormPresenter.getStudentName());
-		surnameInput.setText(studentFormPresenter.getStudentSurName());
-		List<String> subject = new ArrayList<>();
-		for (int i = 0; i < studentFormPresenter.getStudentNumSubject(); i++) {
-			subject.add(studentFormPresenter.getStudentSubject(i));
-		}
-		updateSubjectList(subject);
-	}
-
-	public void updateSubjectList(List<String> studentSubjectCollection) {
-		unassignedSubjectModel2 = new DefaultListModel<>();
-		assignedSubjectModel = new DefaultListModel<>();
-
-		for (int i = 0; i < studentFormPresenter.loadSubjects(); i++) {
-			String subject = studentFormPresenter.getSubjectByPosition(i);
-			if (studentSubjectCollection != null && studentSubjectCollection.contains(subject)) {
-				assignedSubjectModel.addElement(subject);
-			} else {
-				unassignedSubjectModel2.addElement(subject);
-			}
-		}
-		unassignSubjectCollection.setModel(unassignedSubjectModel2);
-		assignSubjectCollection.setModel(assignedSubjectModel);
-	}
+	
 
 	private void onAddSubjectButtonActionPerformed() {
 		int[] selectedIndex = unassignSubjectCollection.getSelectedIndices();
 
 		for (int i = selectedIndex.length - 1; i >= 0; i--) {
 			int index = selectedIndex[i];
-			String item = unassignedSubjectModel2.getElementAt(index);
+			String item = unassignedSubjectModel.getElementAt(index);
 			assignedSubjectModel.addElement(item);
-			unassignedSubjectModel2.remove(index);
+			unassignedSubjectModel.remove(index);
 		}
 	}
 
@@ -205,7 +177,7 @@ public class StudentFormView extends JPanel {
 		for (int i = selectedIndex.length - 1; i >= 0; i--) {
 			int index = selectedIndex[i];
 			String item = assignedSubjectModel.getElementAt(index);
-			unassignedSubjectModel2.addElement(item);
+			unassignedSubjectModel.addElement(item);
 			assignedSubjectModel.remove(index);
 		}
 	}
@@ -217,17 +189,12 @@ public class StudentFormView extends JPanel {
 
 		if (!name.isEmpty() && !surname.isEmpty()) {
 			if (editMode)
-				studentFormPresenter.updateStudent(name, surname, assignedSubjectModel, studentSelectedId);
+				iStudentFormViewPresenter.updateStudent(name, surname, assignedSubjectModel, studentSelectedId);
 			else
-				studentFormPresenter.insertNewStudent(name, surname, assignedSubjectModel);
-			studentCollectionView.updateStudentTableData();
+				iStudentFormViewPresenter.insertNewStudent(name, surname, assignedSubjectModel);
 		}
 	}
-
-	public void setStudentCollectionView(StudentsCollectionView studentCollectionView) {
-		this.studentCollectionView = studentCollectionView;
-	}
-
+	
 	public JButton getAddSubjectButton() {
 		return addSubjectButton;
 	}
@@ -324,12 +291,12 @@ public class StudentFormView extends JPanel {
 		this.assignSubjectPane = assignSubjectPane;
 	}
 
-	public DefaultListModel<String> getUnassignedSubjectModel2() {
-		return unassignedSubjectModel2;
+	public DefaultListModel<String> getUnassignedSubjectModel() {
+		return unassignedSubjectModel;
 	}
 
-	public void setUnassignedSubjectModel2(DefaultListModel<String> unassignedSubjectModel2) {
-		this.unassignedSubjectModel2 = unassignedSubjectModel2;
+	public void setUnassignedSubjectModel(DefaultListModel<String> unassignedSubjectModel) {
+		this.unassignedSubjectModel = unassignedSubjectModel;
 	}
 
 	public DefaultListModel<String> getAssignedSubjectModel() {
@@ -346,6 +313,11 @@ public class StudentFormView extends JPanel {
 
 	public static String getEditstudentlabeltext() {
 		return EDIT_STUDENT_LABEL_TEXT;
+	}
+	
+	public void setEditStudent(Student student) {
+		nameInput.setText(student.getName());
+		surnameInput.setText(student.getSurname());
 	}
 
 	

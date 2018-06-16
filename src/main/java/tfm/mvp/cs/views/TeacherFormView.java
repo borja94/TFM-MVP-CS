@@ -14,18 +14,15 @@ import javax.swing.LayoutStyle;
 
 import tfm.mvp.cs.models.Subject;
 import tfm.mvp.cs.models.Teacher;
-import tfm.mvp.cs.presenters.TeacherFormPresenter;
-import tfm.mvp.cs.presenters.TeachersCollectionPresenter;
-
+import tfm.mvp.cs.presenters.ITeacherFormViewPresenter;
 public class TeacherFormView extends JPanel {
 
-	private TeacherFormPresenter teacherFormPresenter;
+	private ITeacherFormViewPresenter iTeacherFormViewPresenter;
 
 	private DefaultListModel<String> unassignedSubjectModel;
 	private DefaultListModel<String> assignedSubjectModel;
 
 	private static final String NEW_TEACHER_LABEL_TEXT = "Nuevo profesor";
-	private static final String EDIT_TEACHE_LABEL_TEXT = "Editar profesor";
 	private static final String ID_SUBJECT_SEPARATOR = "#";
 
 	private JLabel teacherFormLabel;
@@ -45,9 +42,10 @@ public class TeacherFormView extends JPanel {
 	private boolean editMode;
 	private int teacherSelectedId;
 
-	public TeacherFormView() {
+	public TeacherFormView(ITeacherFormViewPresenter teacherFormViewPresenter) {
 		initComponents();
-		teacherFormPresenter = new TeacherFormPresenter(this);
+		iTeacherFormViewPresenter = teacherFormViewPresenter;
+		iTeacherFormViewPresenter.setTeacherFormView(this);
 		updateSubjectList();
 	}
 
@@ -167,15 +165,8 @@ public class TeacherFormView extends JPanel {
 		cleanForm();
 	}
 
-	public void onEditTeacherMode(int id) {
-		editMode = true;
-		teacherFormLabel.setText(EDIT_TEACHE_LABEL_TEXT);
-		teacherSelectedId = id;
-		teacherFormPresenter.editTeacherMode(id);
-	}
-
 	private void updateSubjectList() {
-		teacherFormPresenter.updateSubjectList();
+		iTeacherFormViewPresenter.updateSubjectList();
 	}
 
 	private void onAddSubjectButtonActionPerformed() {
@@ -207,18 +198,15 @@ public class TeacherFormView extends JPanel {
 
 		if (!name.isEmpty() && !surname.isEmpty()) {
 			if (editMode)
-				teacherFormPresenter.updateTeacher();
+				iTeacherFormViewPresenter.updateTeacher();
 			else
-				teacherFormPresenter.insertNewTeacher();
+				iTeacherFormViewPresenter.insertNewTeacher();
 		}
 	}
 
-	public TeacherFormPresenter getTeacherFormPresenter() {
-		return teacherFormPresenter;
-	}
 
-	public void setTeacherFormPresenter(TeacherFormPresenter teacherFormPresenter) {
-		this.teacherFormPresenter = teacherFormPresenter;
+	public void setTeacherFormPresenter(ITeacherFormViewPresenter teacherFormViewPresenter) {
+		this.iTeacherFormViewPresenter = teacherFormViewPresenter;
 	}
 
 	public DefaultListModel<String> getUnassignedSubjectModel() {
@@ -347,10 +335,6 @@ public class TeacherFormView extends JPanel {
 
 	public void setAssignSubjectPane(JScrollPane assignSubjectPane) {
 		this.assignSubjectPane = assignSubjectPane;
-	}
-
-	public void setTeacherCollectionPresenter(TeachersCollectionPresenter teacherCollectionPresenter) {
-		this.teacherFormPresenter.setTeachetCollectionPresenter(teacherCollectionPresenter);
 	}
 
 	public void cleanForm() {

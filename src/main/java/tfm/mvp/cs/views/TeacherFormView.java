@@ -76,14 +76,14 @@ public class TeacherFormView extends JPanel {
 		addSubjectButton.setText("-->");
 		addSubjectButton.addActionListener(new ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				addSubjectButtonActionPerformed();
+				onAddSubjectButtonActionPerformed();
 			}
 		});
 
 		removeSubjectButton.setText("<--");
 		removeSubjectButton.addActionListener(new ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				removeSubjectButtonActionPerformed();
+				onRemoveSubjectButtonActionPerformed();
 			}
 		});
 
@@ -94,7 +94,7 @@ public class TeacherFormView extends JPanel {
 		saveFormButton.setText("Guardar");
 		saveFormButton.addActionListener(new ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				saveFormButtonActionPerformed();
+				onSaveFormButtonActionPerformed();
 			}
 		});
 
@@ -163,22 +163,22 @@ public class TeacherFormView extends JPanel {
 				.addGap(51, 51, 51).addComponent(saveFormButton).addContainerGap(96, Short.MAX_VALUE)));
 	}
 
-	public void newTeacherMode() {
+	public void onNewTeacherMode() {
 		cleanForm();
 	}
 
-	public void editTeacherMode(int id) {
+	public void onEditTeacherMode(int id) {
 		editMode = true;
 		teacherFormLabel.setText(EDIT_TEACHE_LABEL_TEXT);
 		teacherSelectedId = id;
-		teacherFormPresenter.notifyEditTeacherMode(id);
+		teacherFormPresenter.editTeacherMode(id);
 	}
 
 	private void updateSubjectList() {
-		teacherFormPresenter.notifyUpdateSubjectList();
+		teacherFormPresenter.updateSubjectList();
 	}
 
-	private void addSubjectButtonActionPerformed() {
+	private void onAddSubjectButtonActionPerformed() {
 		int[] selectedIndex = unassignSubjectCollection.getSelectedIndices();
 
 		for (int i = selectedIndex.length - 1; i >= 0; i--) {
@@ -189,7 +189,7 @@ public class TeacherFormView extends JPanel {
 		}
 	}
 
-	private void removeSubjectButtonActionPerformed() {
+	private void onRemoveSubjectButtonActionPerformed() {
 		int[] selectedIndex = assignSubjectCollection.getSelectedIndices();
 
 		for (int i = selectedIndex.length - 1; i >= 0; i--) {
@@ -200,16 +200,16 @@ public class TeacherFormView extends JPanel {
 		}
 	}
 
-	private void saveFormButtonActionPerformed() {
+	private void onSaveFormButtonActionPerformed() {
 
 		String name = nameInput.getText();
 		String surname = surnameInput.getText();
 
 		if (!name.isEmpty() && !surname.isEmpty()) {
 			if (editMode)
-				teacherFormPresenter.notifyUpdateTeacher();
+				teacherFormPresenter.updateTeacher();
 			else
-				teacherFormPresenter.notifyInsertNewTeacher();
+				teacherFormPresenter.insertNewTeacher();
 		}
 	}
 

@@ -50,21 +50,21 @@ public class SubjectsCollectionView extends JPanel {
 		deleteButton.setText("Borrar");
 		deleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				deleteButtonActionPerformed();
+				onDeleteButtonActionPerformed();
 			}
 		});
 
 		editButton.setText("Modo edición");
 		editButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				editButtonActionPerformed();
+				onEditButtonActionPerformed();
 			}
 		});
 
 		newSubjectButton.setText("Nueva asignatura");
 		newSubjectButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				newSubjectButtonActionPerformed();
+				onNewSubjectButtonActionPerformed();
 			}
 		});
 
@@ -111,7 +111,7 @@ public class SubjectsCollectionView extends JPanel {
 		subjectTable.setModel(subjectsTableModel);
 	}
 
-	private void deleteButtonActionPerformed() {
+	private void onDeleteButtonActionPerformed() {
 		int selectedRow = subjectTable.getSelectedRow();
 		if (selectedRow != -1) {
 			int dialogResult = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar al alumno");
@@ -123,14 +123,14 @@ public class SubjectsCollectionView extends JPanel {
 		}
 	}
 
-	private void editButtonActionPerformed() {
+	private void onEditButtonActionPerformed() {
 
 		int selectedRow = subjectTable.getSelectedRow();
 		if (selectedRow != -1)
 			subjectFormView.editSubjectMode(Integer.parseInt(subjectsTableModel.getValueAt(selectedRow, 0).toString()));
 	}
 
-	private void newSubjectButtonActionPerformed() {
+	private void onNewSubjectButtonActionPerformed() {
 		subjectFormView.newSubjectMode();
 	}
 

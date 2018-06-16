@@ -54,7 +54,7 @@ public class SubjectFormView extends JPanel {
 		saveButton.setText("Guardar");
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				saveButtonActionPerformed();
+				onSaveButtonActionPerformed();
 			}
 		});
 
@@ -95,7 +95,7 @@ public class SubjectFormView extends JPanel {
 
 	}
 
-	private void saveButtonActionPerformed() {
+	private void onSaveButtonActionPerformed() {
 
 		String name = titleInput.getText();
 		String course = courseInput.getText();

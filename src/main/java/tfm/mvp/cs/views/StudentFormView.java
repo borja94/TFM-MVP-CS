@@ -74,21 +74,21 @@ public class StudentFormView extends JPanel {
 		addSubjectButton.setText("-->");
 		addSubjectButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				addSubjectButtonActionPerformed();
+				onAddSubjectButtonActionPerformed();
 			}
 		});
 
 		removeSubjectButton.setText("<--");
 		removeSubjectButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				removeSubjectButtonActionPerformed();
+				onRemoveSubjectButtonActionPerformed();
 			}
 		});
 
 		saveFormButton.setText("Guardar");
 		saveFormButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				saveFormButtonActionPerformed();
+				onSaveFormButtonActionPerformed();
 			}
 		});
 
@@ -188,7 +188,7 @@ public class StudentFormView extends JPanel {
 		assignSubjectCollection.setModel(assignedSubjectModel);
 	}
 
-	private void addSubjectButtonActionPerformed() {
+	private void onAddSubjectButtonActionPerformed() {
 		int[] selectedIndex = unassignSubjectCollection.getSelectedIndices();
 
 		for (int i = selectedIndex.length - 1; i >= 0; i--) {
@@ -199,7 +199,7 @@ public class StudentFormView extends JPanel {
 		}
 	}
 
-	private void removeSubjectButtonActionPerformed() {
+	private void onRemoveSubjectButtonActionPerformed() {
 		int[] selectedIndex = assignSubjectCollection.getSelectedIndices();
 
 		for (int i = selectedIndex.length - 1; i >= 0; i--) {
@@ -210,7 +210,7 @@ public class StudentFormView extends JPanel {
 		}
 	}
 
-	private void saveFormButtonActionPerformed() {
+	private void onSaveFormButtonActionPerformed() {
 
 		String name = nameInput.getText();
 		String surname = surnameInput.getText();

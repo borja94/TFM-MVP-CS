@@ -47,21 +47,21 @@ public class StudentsCollectionView extends JPanel {
 		deleteStudentButton.setText("Borrar");
 		deleteStudentButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				deleteStudentButtonActionPerformed();
+				onDeleteStudentButtonActionPerformed();
 			}
 		});
 
 		editStudentButton.setText("Modo edici�n");
 		editStudentButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				editStudentButtonActionPerformed();
+				onEditStudentButtonActionPerformed();
 			}
 		});
 
 		newStudentButton.setText("Nuevo alumno");
 		newStudentButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				newStudentButtonActionPerformed();
+				onNewStudentButtonActionPerformed();
 			}
 		});
 
@@ -108,7 +108,7 @@ public class StudentsCollectionView extends JPanel {
 		studentsTable.setModel(studentsTableModel);
 	}
 
-	private void deleteStudentButtonActionPerformed() {
+	private void onDeleteStudentButtonActionPerformed() {
 		int selectedRow = studentsTable.getSelectedRow();
 		if (selectedRow != -1) {
 			int dialogResult = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar al alumno");
@@ -119,7 +119,7 @@ public class StudentsCollectionView extends JPanel {
 		}
 	}
 
-	private void editStudentButtonActionPerformed() {
+	private void onEditStudentButtonActionPerformed() {
 
 		int selectedRow = studentsTable.getSelectedRow();
 		if (selectedRow != -1) {
@@ -128,7 +128,7 @@ public class StudentsCollectionView extends JPanel {
 		}
 	}
 
-	private void newStudentButtonActionPerformed() {
+	private void onNewStudentButtonActionPerformed() {
 		studentFormView.newTeacherMode();
 	}
 

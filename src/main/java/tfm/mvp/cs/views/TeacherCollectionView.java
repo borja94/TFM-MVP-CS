@@ -44,21 +44,21 @@ public class TeacherCollectionView extends JPanel {
 		deleteTeacherButton.setText("Borrar");
 		deleteTeacherButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				deleteTeacherButtonActionPerformed();
+				onDeleteTeacherButtonActionPerformed();
 			}
 		});
 
 		editTeacherButton.setText("Modo edición");
 		editTeacherButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				editTeacherButtonActionPerformed();
+				onEditTeacherButtonActionPerformed();
 			}
 		});
 
 		newTeacherButton.setText("Nuevo profesor");
 		newTeacherButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				newTeacherButtonActionPerformed();
+				onNewTeacherButtonActionPerformed();
 			}
 		});
 
@@ -89,19 +89,19 @@ public class TeacherCollectionView extends JPanel {
 	}
 
 	public void updateTeacherTableData() {
-		teacherCollectionPresenter.notifyUpdateTeacherTableData();
+		teacherCollectionPresenter.updateTeacherTableData();
 	}
 
-	private void deleteTeacherButtonActionPerformed() {
-		teacherCollectionPresenter.notifyDeleteTeacher();
+	private void onDeleteTeacherButtonActionPerformed() {
+		teacherCollectionPresenter.deleteTeacher();
 	}
 
-	private void editTeacherButtonActionPerformed() {
-		teacherCollectionPresenter.notifyEditTeacher();
+	private void onEditTeacherButtonActionPerformed() {
+		teacherCollectionPresenter.editTeacher();
 	}
 
-	private void newTeacherButtonActionPerformed() {
-		teacherCollectionPresenter.notifyNewTeacher();
+	private void onNewTeacherButtonActionPerformed() {
+		teacherCollectionPresenter.newTeacher();
 	}
 
 	public JButton getDeleteTeacherButton() {

@@ -27,25 +27,25 @@ public class TeacherFormPresenter {
 		subjectDao = new SubjectDao();
 	}
 
-	public void notifyInsertNewTeacher() {
+	public void insertNewTeacher() {
 
 		Teacher teacherAux = teacherFormView.getEditTeacher();
 
 		teacherDao.insert(teacherAux);
 		cleanForm();
-		teacherCollectionPresenter.notifyUpdateTeacherTableData();
+		teacherCollectionPresenter.updateTeacherTableData();
 	}
 
-	public void notifyUpdateTeacher() {
+	public void updateTeacher() {
 
 		Teacher teacherAux = teacherFormView.getEditTeacher();
 
 		teacherDao.update(teacherAux);
 		cleanForm();
-		teacherCollectionPresenter.notifyUpdateTeacherTableData();
+		teacherCollectionPresenter.updateTeacherTableData();
 	}
 
-	public void notifyUpdateSubjectList() {
+	public void updateSubjectList() {
 
 		updateSubjectList(null);
 	}
@@ -74,7 +74,7 @@ public class TeacherFormPresenter {
 
 	}
 
-	public void notifyRemoveSubject() {
+	public void removeSubject() {
 		int[] selectedIndex = teacherFormView.getAssignSubjectCollection().getSelectedIndices();
 
 		for (int i = selectedIndex.length - 1; i >= 0; i--) {
@@ -86,11 +86,11 @@ public class TeacherFormPresenter {
 	}
 
 
-	public void notifyNewTeacherMode() {
+	public void newTeacherMode() {
 		cleanForm();
 	}
 
-	public void notifyEditTeacherMode(int id) {
+	public void editTeacherMode(int id) {
 		
 		loadTeacher(id);
 		teacherFormView.setEditTeacher(teacher);

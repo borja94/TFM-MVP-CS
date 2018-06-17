@@ -1,8 +1,5 @@
 package tfm.mvp.cs.views;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -44,11 +41,7 @@ public class SubjectsFrame extends JFrame {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 		returnMenuFrameButton.setText("Volver");
-		returnMenuFrameButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				returnMenuFrameButtonActionPerformed();
-			}
-		});
+		returnMenuFrameButton.addActionListener(e->returnMenuFrameButtonActionPerformed());
 
 		GroupLayout layout = new GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);

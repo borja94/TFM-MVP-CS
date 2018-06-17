@@ -42,11 +42,7 @@ public class TeachersFrame extends JFrame {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 		returnMenuFrameButton.setText("Volver");
-		returnMenuFrameButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				returnMenuFrameButtonActionPerformed();
-			}
-		});
+		returnMenuFrameButton.addActionListener(e->returnMenuFrameButtonActionPerformed());
 
 		JPanel container = new JPanel();
 		container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));

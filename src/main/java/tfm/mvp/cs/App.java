@@ -25,10 +25,6 @@ public class App {
 			Logger.getLogger(MenuFrame.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				new MenuFrame().setVisible(true);
-			}
-		});
+		EventQueue.invokeLater(()->new MenuFrame().setVisible(true));
 	}
 }

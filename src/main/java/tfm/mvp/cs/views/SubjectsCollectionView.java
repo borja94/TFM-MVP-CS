@@ -1,8 +1,5 @@
 package tfm.mvp.cs.views;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -44,25 +41,13 @@ public class SubjectsCollectionView extends JPanel {
 		tableScrollPane.setViewportView(subjectTable);
 
 		deleteButton.setText("Borrar");
-		deleteButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				onDeleteButtonActionPerformed();
-			}
-		});
+		deleteButton.addActionListener(e->onDeleteButtonActionPerformed());
 
 		editButton.setText("Modo edición");
-		editButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				onEditButtonActionPerformed();
-			}
-		});
+		editButton.addActionListener(e->onEditButtonActionPerformed());
 
 		newSubjectButton.setText("Nueva asignatura");
-		newSubjectButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				onNewSubjectButtonActionPerformed();
-			}
-		});
+		newSubjectButton.addActionListener(e->onNewSubjectButtonActionPerformed());
 
 		initComponentsPosition();
 	}

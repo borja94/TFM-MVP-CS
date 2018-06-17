@@ -1,10 +1,7 @@
 package tfm.mvp.cs.views;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-
 
 public class MenuFrame extends JFrame {
 
@@ -12,7 +9,6 @@ public class MenuFrame extends JFrame {
 	private TeachersFrame teacherFrame;
 	private StudentsFrame studentsFrame;
 
-	
 	public MenuFrame() {
 		MenuPanel menuPanel = new MenuPanel();
 		this.setContentPane(menuPanel);
@@ -21,22 +17,11 @@ public class MenuFrame extends JFrame {
 		teacherFrame = new TeachersFrame(this);
 		studentsFrame = new StudentsFrame(this);
 
-		menuPanel.getStudentFrameButton().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				studentFrameButtonAction();
-			}
-		});
+		menuPanel.getStudentFrameButton().addActionListener(e->studentFrameButtonAction());
 
-		menuPanel.getTeacherFrameButton().addActionListener(new ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				teacherFrameButtonAction();
-			}
-		});
-		menuPanel.getSubjectFrameButton().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				subjectFrameButtonAction();
-			}
-		});
+		menuPanel.getTeacherFrameButton().addActionListener(e -> teacherFrameButtonAction());
+		
+		menuPanel.getSubjectFrameButton().addActionListener(e->subjectFrameButtonAction());
 
 	}
 

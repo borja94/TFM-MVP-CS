@@ -1,8 +1,5 @@
 package tfm.mvp.cs.views;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -42,25 +39,13 @@ public class StudentsCollectionView extends JPanel {
 		tableScrollPane.setViewportView(studentsTable);
 
 		deleteStudentButton.setText("Borrar");
-		deleteStudentButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				onDeleteStudentButtonActionPerformed();
-			}
-		});
+		deleteStudentButton.addActionListener(e -> onDeleteStudentButtonActionPerformed());
 
 		editStudentButton.setText("Modo edici�n");
-		editStudentButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				onEditStudentButtonActionPerformed();
-			}
-		});
+		editStudentButton.addActionListener(e->onEditStudentButtonActionPerformed());
 
 		newStudentButton.setText("Nuevo alumno");
-		newStudentButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				onNewStudentButtonActionPerformed();
-			}
-		});
+		newStudentButton.addActionListener(e->onNewStudentButtonActionPerformed());
 
 		initComponentsPosition();
 	}
@@ -70,12 +55,12 @@ public class StudentsCollectionView extends JPanel {
 		GroupLayout jPanel2Layout = new GroupLayout(this);
 		this.setLayout(jPanel2Layout);
 		jPanel2Layout.setHorizontalGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(jPanel2Layout.createSequentialGroup().addContainerGap()
-						.addGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-								.addComponent(tableScrollPane, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE)
-								.addGroup(jPanel2Layout.createSequentialGroup().addComponent(deleteStudentButton)
-										.addGap(18, 18, 18).addComponent(editStudentButton).addGap(18, 18, 18)
-										.addComponent(newStudentButton)))
+				.addGroup(jPanel2Layout.createSequentialGroup().addContainerGap().addGroup(jPanel2Layout
+						.createParallelGroup(GroupLayout.Alignment.LEADING)
+						.addComponent(tableScrollPane, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE)
+						.addGroup(jPanel2Layout.createSequentialGroup().addComponent(deleteStudentButton)
+								.addGap(18, 18, 18).addComponent(editStudentButton).addGap(18, 18, 18)
+								.addComponent(newStudentButton)))
 						.addContainerGap(17, Short.MAX_VALUE)));
 		jPanel2Layout.setVerticalGroup(jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 				.addGroup(jPanel2Layout.createSequentialGroup().addContainerGap()
@@ -152,9 +137,5 @@ public class StudentsCollectionView extends JPanel {
 	public void setTableScrollPane(JScrollPane tableScrollPane) {
 		this.tableScrollPane = tableScrollPane;
 	}
-	
-	
-	
-	
 
 }

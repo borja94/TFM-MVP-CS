@@ -1,7 +1,5 @@
 package tfm.mvp.cs.views;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -51,11 +49,7 @@ public class SubjectFormView extends JPanel {
 		courseInpitLabel.setText("Curso");
 
 		saveButton.setText("Guardar");
-		saveButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				onSaveButtonActionPerformed();
-			}
-		});
+		saveButton.addActionListener(e->onSaveButtonActionPerformed());
 
 		initComponentsPosition();
 	}

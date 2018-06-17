@@ -1,7 +1,5 @@
 package tfm.mvp.cs.views;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -30,7 +28,6 @@ public class StudentFormView extends JPanel {
 	private JScrollPane unassignSubjectPane;
 	private JScrollPane assignSubjectPane;
 
-	
 	private DefaultListModel<String> unassignedSubjectModel;
 	private DefaultListModel<String> assignedSubjectModel;
 	private boolean editMode;
@@ -42,7 +39,7 @@ public class StudentFormView extends JPanel {
 	public StudentFormView(IStudentFormViewPresenter studentFormViewPresenter) {
 		iStudentFormViewPresenter = studentFormViewPresenter;
 		iStudentFormViewPresenter.setStudentFormView(this);
-		
+
 		initComponents();
 	}
 
@@ -72,25 +69,13 @@ public class StudentFormView extends JPanel {
 		assignSubjectPane.setViewportView(assignSubjectCollection);
 
 		addSubjectButton.setText("-->");
-		addSubjectButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				onAddSubjectButtonActionPerformed();
-			}
-		});
+		addSubjectButton.addActionListener(e -> onAddSubjectButtonActionPerformed());
 
 		removeSubjectButton.setText("<--");
-		removeSubjectButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				onRemoveSubjectButtonActionPerformed();
-			}
-		});
+		removeSubjectButton.addActionListener(e->onRemoveSubjectButtonActionPerformed());
 
 		saveFormButton.setText("Guardar");
-		saveFormButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				onSaveFormButtonActionPerformed();
-			}
-		});
+		saveFormButton.addActionListener(e->onSaveFormButtonActionPerformed());
 
 		initComponentsPosition();
 		iStudentFormViewPresenter.updateSubjectList();
@@ -100,9 +85,9 @@ public class StudentFormView extends JPanel {
 
 		GroupLayout layout = new GroupLayout(this);
 		this.setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup().addGroup(layout
-						.createParallelGroup(GroupLayout.Alignment.LEADING)
+		layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout
+				.createSequentialGroup()
+				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 						.addGroup(layout.createSequentialGroup().addContainerGap().addGroup(layout
 								.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(studentFormLabel)
 								.addGroup(layout.createSequentialGroup()
@@ -120,33 +105,30 @@ public class StudentFormView extends JPanel {
 										.addGap(18, 18, 18)
 										.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 												.addComponent(addSubjectButton).addComponent(removeSubjectButton))
-										.addGap(18, 18, 18).addComponent(assignSubjectPane, GroupLayout.PREFERRED_SIZE, 101,
-												GroupLayout.PREFERRED_SIZE))))
-						.addGroup(layout.createSequentialGroup().addGap(117, 117, 117)
-								.addComponent(saveFormButton)))
-						.addContainerGap(114, Short.MAX_VALUE)));
-		layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup().addGap(26, 26, 26).addComponent(studentFormLabel)
-						.addGap(18, 18, 18)
-						.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(nameInputLabel).addComponent(surnameInputLabel))
-						.addGap(4, 4, 4)
-						.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-								.addComponent(nameInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(surnameInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-								.addGroup(layout.createSequentialGroup().addGap(56, 56, 56)
-										.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-												.addComponent(unassignSubjectPane, GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-												.addComponent(assignSubjectPane, GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-								.addGroup(layout.createSequentialGroup().addGap(95, 95, 95)
-										.addComponent(addSubjectButton).addGap(33, 33, 33)
-										.addComponent(removeSubjectButton)))
-						.addGap(51, 51, 51).addComponent(saveFormButton).addContainerGap(96, Short.MAX_VALUE)));
+										.addGap(18, 18, 18).addComponent(assignSubjectPane, GroupLayout.PREFERRED_SIZE,
+												101, GroupLayout.PREFERRED_SIZE))))
+						.addGroup(layout.createSequentialGroup().addGap(117, 117, 117).addComponent(saveFormButton)))
+				.addContainerGap(114, Short.MAX_VALUE)));
+		layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout
+				.createSequentialGroup().addGap(26, 26, 26).addComponent(studentFormLabel).addGap(18, 18, 18)
+				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(nameInputLabel)
+						.addComponent(surnameInputLabel))
+				.addGap(4, 4, 4)
+				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+						.addComponent(nameInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addComponent(surnameInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE))
+				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+						.addGroup(layout.createSequentialGroup().addGap(56, 56, 56)
+								.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+										.addComponent(unassignSubjectPane, GroupLayout.PREFERRED_SIZE,
+												GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(assignSubjectPane, GroupLayout.PREFERRED_SIZE,
+												GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(layout.createSequentialGroup().addGap(95, 95, 95).addComponent(addSubjectButton)
+								.addGap(33, 33, 33).addComponent(removeSubjectButton)))
+				.addGap(51, 51, 51).addComponent(saveFormButton).addContainerGap(96, Short.MAX_VALUE)));
 
 	}
 
@@ -157,8 +139,6 @@ public class StudentFormView extends JPanel {
 		studentSelectedId = 0;
 		editMode = false;
 	}
-
-	
 
 	private void onAddSubjectButtonActionPerformed() {
 		int[] selectedIndex = unassignSubjectCollection.getSelectedIndices();
@@ -194,7 +174,7 @@ public class StudentFormView extends JPanel {
 				iStudentFormViewPresenter.insertNewStudent(name, surname, assignedSubjectModel);
 		}
 	}
-	
+
 	public JButton getAddSubjectButton() {
 		return addSubjectButton;
 	}
@@ -314,12 +294,10 @@ public class StudentFormView extends JPanel {
 	public static String getEditstudentlabeltext() {
 		return EDIT_STUDENT_LABEL_TEXT;
 	}
-	
+
 	public void setEditStudent(Student student) {
 		nameInput.setText(student.getName());
 		surnameInput.setText(student.getSurname());
 	}
 
-	
-	
 }

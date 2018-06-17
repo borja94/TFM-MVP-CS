@@ -11,14 +11,12 @@ import tfm.mvp.cs.models.Teacher;
 import tfm.mvp.cs.models.TeacherDao;
 import tfm.mvp.cs.views.TeacherFormView;
 
-public class TeacherFormPresenter implements ITeacherFormPresenter, ITeacherFormViewPresenter{
+public class TeacherFormPresenter implements ITeacherFormPresenter, ITeacherFormViewPresenter {
 
 	private TeacherDao teacherDao;
 	private SubjectDao subjectDao;
-	private Teacher teacher;
-	private List<Subject> subjectsCollection;
 	private TeacherFormView teacherFormView;
-	
+
 	private TeachersCollectionPresenter teacherCollectionPresenter;
 
 	public TeacherFormPresenter() {
@@ -54,8 +52,10 @@ public class TeacherFormPresenter implements ITeacherFormPresenter, ITeacherForm
 
 		teacherFormView.setAssignedSubjectModel(new DefaultListModel<>());
 
-		for (int i = 0; i < loadSubjects(); i++) {
-			String subject = getSubjectByPosition(i);
+		List<Subject> subjectsCollection = subjectDao.getAll();
+
+		for (int i = 0; i < subjectsCollection.size(); i++) {
+			String subject = subjectsCollection.get(i).toString();
 			if (teacherSubjectCollection != null && teacherSubjectCollection.contains(subject)) {
 				teacherFormView.getAssignedSubjectModel().addElement(subject);
 			} else {
@@ -70,56 +70,21 @@ public class TeacherFormPresenter implements ITeacherFormPresenter, ITeacherForm
 
 		teacherFormView.cleanForm();
 		updateSubjectList(null);
-
 	}
-
 
 	public void newTeacherMode() {
 		cleanForm();
 	}
 
 	public void editTeacherMode(int id) {
-		
-		loadTeacher(id);
+
+		Teacher teacher = teacherDao.get(id);
 		teacherFormView.setEditTeacher(teacher);
 		List<String> subject = new ArrayList<>();
-		for (int i = 0; i < getTeacherNumSubject(); i++) {
-			subject.add(getTeacherSubject(i));
+		for (int i = 0; i < teacher.getSubjectCollection().size(); i++) {
+			subject.add(teacher.getSubjectCollection().get(i).toString());
 		}
 		updateSubjectList(subject);
-	}
-
-	public void loadTeacher(int id) {
-		teacher = teacherDao.get(id);
-	}
-
-	public String getTeacherName() {
-		return teacher.getName();
-	}
-
-	public String getTeacherSurName() {
-		return teacher.getSurname();
-	}
-
-	public int getTeacherId() {
-		return teacher.getId();
-	}
-
-	public int getTeacherNumSubject() {
-		return teacher.getSubjectCollection().size();
-	}
-
-	public String getTeacherSubject(int id) {
-		return teacher.getSubjectCollection().get(id).toString();
-	}
-
-	public int loadSubjects() {
-		subjectsCollection = subjectDao.getAll();
-		return subjectsCollection.size();
-	}
-
-	public String getSubjectByPosition(int position) {
-		return subjectsCollection.get(position).toString();
 	}
 
 	public void setTeachetCollectionPresenter(TeachersCollectionPresenter teacherCollectionPresenter) {
@@ -129,7 +94,7 @@ public class TeacherFormPresenter implements ITeacherFormPresenter, ITeacherForm
 	@Override
 	public void setTeacherFormView(TeacherFormView teacherFormView) {
 		this.teacherFormView = teacherFormView;
-		
+
 	}
 
 }

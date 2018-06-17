@@ -1,6 +1,5 @@
 package tfm.mvp.cs.views;
 
-
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -49,7 +48,7 @@ public class SubjectFormView extends JPanel {
 		courseInpitLabel.setText("Curso");
 
 		saveButton.setText("Guardar");
-		saveButton.addActionListener(e->onSaveButtonActionPerformed());
+		saveButton.addActionListener(e -> onSaveButtonActionPerformed());
 
 		initComponentsPosition();
 	}
@@ -95,9 +94,9 @@ public class SubjectFormView extends JPanel {
 
 		if (!name.isEmpty() && !course.isEmpty()) {
 			if (editMode) {
-				iSubjectFormViewPresenter.updateStudent(name, Integer.parseInt(course), subjectSelectedId);
+				iSubjectFormViewPresenter.updateStudent();
 			} else {
-				iSubjectFormViewPresenter.insertNewStudent(name, Integer.parseInt(course));
+				iSubjectFormViewPresenter.insertNewStudent();
 			}
 		}
 	}
@@ -118,68 +117,8 @@ public class SubjectFormView extends JPanel {
 		courseInput.setText(subject.getCourse().toString());
 	}
 
-	public int getSubjectSelectedId() {
-		return subjectSelectedId;
-	}
+	public Subject getEditSubject() {
 
-	public void setSubjectSelectedId(int subjectSelectedId) {
-		this.subjectSelectedId = subjectSelectedId;
+		return new Subject(subjectSelectedId, titleInput.getText(), Integer.parseInt(courseInput.getText()));
 	}
-
-	public JTextField getCourseInput() {
-		return courseInput;
-	}
-
-	public void setCourseInput(JTextField courseInput) {
-		this.courseInput = courseInput;
-	}
-
-	public JButton getSaveButton() {
-		return saveButton;
-	}
-
-	public void setSaveButton(JButton saveButton) {
-		this.saveButton = saveButton;
-	}
-
-	public JLabel getSubjectFormLabel() {
-		return subjectFormLabel;
-	}
-
-	public void setSubjectFormLabel(JLabel subjectFormLabel) {
-		this.subjectFormLabel = subjectFormLabel;
-	}
-
-	public JTextField getTitleInput() {
-		return titleInput;
-	}
-
-	public void setTitleInput(JTextField titleInput) {
-		this.titleInput = titleInput;
-	}
-
-	public JLabel getTitleInputLabel() {
-		return titleInputLabel;
-	}
-
-	public void setTitleInputLabel(JLabel titleInputLabel) {
-		this.titleInputLabel = titleInputLabel;
-	}
-
-	public JLabel getCourseInpitLabel() {
-		return courseInpitLabel;
-	}
-
-	public void setCourseInpitLabel(JLabel courseInpitLabel) {
-		this.courseInpitLabel = courseInpitLabel;
-	}
-
-	public static String getNewsubjectlabeltext() {
-		return NEW_SUBJECT_LABEL_TEXT;
-	}
-
-	public static String getEditsubjectlabeltext() {
-		return EDIT_SUBJECT_LABEL_TEXT;
-	}
-
 }

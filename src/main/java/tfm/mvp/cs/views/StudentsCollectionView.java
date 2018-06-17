@@ -42,10 +42,10 @@ public class StudentsCollectionView extends JPanel {
 		deleteStudentButton.addActionListener(e -> onDeleteStudentButtonActionPerformed());
 
 		editStudentButton.setText("Modo edici�n");
-		editStudentButton.addActionListener(e->onEditStudentButtonActionPerformed());
+		editStudentButton.addActionListener(e -> onEditStudentButtonActionPerformed());
 
 		newStudentButton.setText("Nuevo alumno");
-		newStudentButton.addActionListener(e->onNewStudentButtonActionPerformed());
+		newStudentButton.addActionListener(e -> onNewStudentButtonActionPerformed());
 
 		initComponentsPosition();
 	}
@@ -90,52 +90,16 @@ public class StudentsCollectionView extends JPanel {
 		iStudentCollectionViewPresenter.newStudentMode();
 	}
 
-	public TableModel getStudentsTableModel() {
-		return studentsTableModel;
-	}
-
 	public void setStudentsTableModel(TableModel studentsTableModel) {
 		this.studentsTableModel = studentsTableModel;
 	}
 
-	public JButton getDeleteStudentButton() {
-		return deleteStudentButton;
-	}
-
-	public void setDeleteStudentButton(JButton deleteStudentButton) {
-		this.deleteStudentButton = deleteStudentButton;
-	}
-
-	public JButton getEditStudentButton() {
-		return editStudentButton;
-	}
-
-	public void setEditStudentButton(JButton editStudentButton) {
-		this.editStudentButton = editStudentButton;
-	}
-
-	public JButton getNewStudentButton() {
-		return newStudentButton;
-	}
-
-	public void setNewStudentButton(JButton newStudentButton) {
-		this.newStudentButton = newStudentButton;
+	public TableModel getStudentsTableModel() {
+		return studentsTableModel;
 	}
 
 	public JTable getStudentsTable() {
 		return studentsTable;
-	}
-
-	public void setStudentsTable(JTable studentsTable) {
-		this.studentsTable = studentsTable;
-	}
-
-	public JScrollPane getTableScrollPane() {
-		return tableScrollPane;
-	}
-
-	public void setTableScrollPane(JScrollPane tableScrollPane) {
-		this.tableScrollPane = tableScrollPane;
 	}
 
 }

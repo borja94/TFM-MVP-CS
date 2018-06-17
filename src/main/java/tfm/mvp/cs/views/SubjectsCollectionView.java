@@ -41,13 +41,13 @@ public class SubjectsCollectionView extends JPanel {
 		tableScrollPane.setViewportView(subjectTable);
 
 		deleteButton.setText("Borrar");
-		deleteButton.addActionListener(e->onDeleteButtonActionPerformed());
+		deleteButton.addActionListener(e -> onDeleteButtonActionPerformed());
 
 		editButton.setText("Modo edición");
-		editButton.addActionListener(e->onEditButtonActionPerformed());
+		editButton.addActionListener(e -> onEditButtonActionPerformed());
 
 		newSubjectButton.setText("Nueva asignatura");
-		newSubjectButton.addActionListener(e->onNewSubjectButtonActionPerformed());
+		newSubjectButton.addActionListener(e -> onNewSubjectButtonActionPerformed());
 
 		initComponentsPosition();
 	}
@@ -75,7 +75,7 @@ public class SubjectsCollectionView extends JPanel {
 
 	}
 
-	public void updateSubjectsTableData() {
+	private void updateSubjectsTableData() {
 		iSubjectsCollectionViewPresenter.updateSubjectsTableData();
 	}
 
@@ -92,54 +92,16 @@ public class SubjectsCollectionView extends JPanel {
 		iSubjectsCollectionViewPresenter.newSubjectMode();
 	}
 
-	public TableModel getSubjectsTableModel() {
-		return subjectsTableModel;
-	}
-
 	public void setSubjectsTableModel(TableModel subjectsTableModel) {
 		this.subjectsTableModel = subjectsTableModel;
-	}
-
-	public JButton getDeleteButton() {
-		return deleteButton;
-	}
-
-	public void setDeleteButton(JButton deleteButton) {
-		this.deleteButton = deleteButton;
-	}
-
-	public JButton getEditButton() {
-		return editButton;
-	}
-
-	public void setEditButton(JButton editButton) {
-		this.editButton = editButton;
-	}
-
-	public JButton getNewSubjectButton() {
-		return newSubjectButton;
-	}
-
-	public void setNewSubjectButton(JButton newSubjectButton) {
-		this.newSubjectButton = newSubjectButton;
 	}
 
 	public JTable getSubjectTable() {
 		return subjectTable;
 	}
 
-	public void setSubjectTable(JTable subjectTable) {
-		this.subjectTable = subjectTable;
+	public TableModel getSubjectsTableModel() {
+		return subjectsTableModel;
 	}
-
-	public JScrollPane getTableScrollPane() {
-		return tableScrollPane;
-	}
-
-	public void setTableScrollPane(JScrollPane tableScrollPane) {
-		this.tableScrollPane = tableScrollPane;
-	}
-	
-	
 
 }

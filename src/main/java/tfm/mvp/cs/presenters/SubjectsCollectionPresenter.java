@@ -21,20 +21,8 @@ public class SubjectsCollectionPresenter implements ISubjectCollectionViewPresen
 		subjectDao = new SubjectDao();
 	}
 
-	public void loadTableData() {
-		subjectsCollection = subjectDao.getAll();
-	}
-
-	public String getColumnName(int position) {
-		return columnNames[position];
-	}
-
-	public int getNumRows() {
-		return subjectsCollection.size();
-	}
-
 	public void updateSubjectsTableData() {
-		loadTableData();
+		subjectsCollection = subjectDao.getAll();
 		String[] columns = new String[columnNames.length];
 		String[][] tableData = new String[subjectsCollection.size()][columnNames.length];
 		for (int i = 0; i < columns.length; i++) {
@@ -48,14 +36,14 @@ public class SubjectsCollectionPresenter implements ISubjectCollectionViewPresen
 		subjectCollectionView.setSubjectsTableModel(new DefaultTableModel(tableData, columns));
 		subjectCollectionView.getSubjectTable().setModel(subjectCollectionView.getSubjectsTableModel());
 	}
-	
+
 	public void removeSubject() {
 		int selectedRow = subjectCollectionView.getSubjectTable().getSelectedRow();
 		if (selectedRow != -1) {
 			int dialogResult = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar al alumno");
 			if (dialogResult == JOptionPane.YES_OPTION) {
-				removeSubject(Integer.parseInt(
-						subjectCollectionView.getSubjectTable().getValueAt(selectedRow, 0).toString()));
+				removeSubject(Integer
+						.parseInt(subjectCollectionView.getSubjectTable().getValueAt(selectedRow, 0).toString()));
 				updateSubjectsTableData();
 			}
 		}
@@ -65,13 +53,14 @@ public class SubjectsCollectionPresenter implements ISubjectCollectionViewPresen
 
 		int selectedRow = subjectCollectionView.getSubjectTable().getSelectedRow();
 		if (selectedRow != -1)
-			iSubjectFormPresenter.editSubjectMode(Integer.parseInt(subjectCollectionView.getSubjectsTableModel().getValueAt(selectedRow, 0).toString()));
+			iSubjectFormPresenter.editSubjectMode(Integer
+					.parseInt(subjectCollectionView.getSubjectsTableModel().getValueAt(selectedRow, 0).toString()));
 	}
-	
+
 	public void newSubjectMode() {
 		iSubjectFormPresenter.newSubjectMode();
 	}
-	
+
 	public String getSubjectAtribute(int column, int row) {
 
 		switch (column) {

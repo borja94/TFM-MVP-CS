@@ -15,14 +15,14 @@ public class SubjectFormPresenter implements ISubjectFormPresenter,ISubjectFormV
 		subjectDao = new SubjectDao();
 	}
 
-	public void insertNewStudent(String title, int course) {
-			Subject subjectAux = new Subject(0, title, course);
+	public void insertNewStudent() {
+			Subject subjectAux = subjectFormView.getEditSubject();
 			subjectDao.insert(subjectAux);
 			subjectCollectionPresenter.updateSubjectsTableData();
 	}
 
-	public void updateStudent(String title, int course, int id) {
-			Subject subjectAux = new Subject(id, title, course);
+	public void updateStudent() {
+			Subject subjectAux = subjectFormView.getEditSubject();
 			subjectDao.update(subjectAux);
 			subjectCollectionPresenter.updateSubjectsTableData();
 	}

@@ -22,22 +22,6 @@ public class TeachersCollectionPresenter implements ITeacherCollectionViewPresen
 		teacherDao = new TeacherDao();
 	}
 
-	public void loadTableData() {
-		teacherCollection = teacherDao.getAll();
-	}
-
-	public int getNumColumns() {
-		return columnNames.length;
-	}
-
-	public String getColumnName(int position) {
-		return columnNames[position];
-	}
-
-	public int getNumRows() {
-		return teacherCollection.size();
-	}
-
 	public String getTeacherAtribute(int column, int row) {
 
 		switch (column) {
@@ -67,14 +51,14 @@ public class TeachersCollectionPresenter implements ITeacherCollectionViewPresen
 
 	public void updateTeacherTableData() {
 
-		loadTableData();
-		String[] columns = new String[getNumColumns()];
-		String[][] tableData = new String[getNumRows()][getNumColumns()];
+		teacherCollection = teacherDao.getAll();
+		String[] columns = new String[columnNames.length];
+		String[][] tableData = new String[teacherCollection.size()][columnNames.length];
 		for (int i = 0; i < columns.length; i++) {
-			columns[i] = getColumnName(i);
+			columns[i] = columnNames[i];
 		}
-		for (int i = 0; i < getNumRows(); i++) {
-			for (int j = 0; j < getNumColumns(); j++) {
+		for (int i = 0; i < teacherCollection.size(); i++) {
+			for (int j = 0; j < columnNames.length; j++) {
 				tableData[i][j] = getTeacherAtribute(j, i);
 			}
 		}

@@ -17,7 +17,6 @@ public class StudentFormPresenter implements IStudentFormPresenter, IStudentForm
 	private SubjectDao subjectDao;
 	private Student student;
 	private List<Subject> subjectsCollection;
-	private static final String ID_SUBJECT_SEPARATOR = "#";
 	private StudentsCollectionPresenter studentCollectionPresenter;
 	private StudentFormView studentFormView;
 
@@ -62,33 +61,18 @@ public class StudentFormPresenter implements IStudentFormPresenter, IStudentForm
 		updateSubjectList(subject);
 	}
 
-	public void insertNewStudent(String name, String surname, DefaultListModel<String> assignedSubjectModel) {
+	public void insertNewStudent() {
 
-		Student studentAux = new Student(0, name, surname);
-
-		for (int i = 0; i < assignedSubjectModel.size(); i++) {
-			String subjectAux = assignedSubjectModel.getElementAt(i);
-			int aux = Integer.parseInt(subjectAux.substring(0, subjectAux.indexOf(ID_SUBJECT_SEPARATOR)));
-			studentAux.getSubjectCollection().add(new Subject(aux));
-		}
+		Student studentAux = studentFormView.getEditStudent();
 		studentDao.insert(studentAux);
-		
 		studentCollectionPresenter.updateStudentTableData();
-
 	}
 
-	public void updateStudent(String name, String surname, DefaultListModel<String> assignedSubjectModel, int id) {
+	public void updateStudent() {
 
-		Student studentAux = new Student(id, name, surname);
-
-		for (int i = 0; i < assignedSubjectModel.size(); i++) {
-			String subjectAux = assignedSubjectModel.getElementAt(i);
-			int aux = Integer.parseInt(subjectAux.substring(0, subjectAux.indexOf(ID_SUBJECT_SEPARATOR)));
-			studentAux.getSubjectCollection().add(new Subject(aux));
-		}
-
+		Student studentAux = studentFormView.getEditStudent();
 		studentDao.update(studentAux);
-
+		studentCollectionPresenter.updateStudentTableData();
 	}
 
 	public void loadStudent(int id) {

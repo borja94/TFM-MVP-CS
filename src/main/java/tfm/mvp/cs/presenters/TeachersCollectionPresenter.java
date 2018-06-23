@@ -14,7 +14,7 @@ public class TeachersCollectionPresenter implements ITeacherCollectionViewPresen
 
 	private TeacherDao teacherDao;
 	private List<Teacher> teacherCollection;
-	private static final String[] columnNames = { "ID", "Nombre", "Apellidos", "Asignaturas" };
+	private static final String[] COLUMN_NAMES = { "ID", "Nombre", "Apellidos", "Asignaturas" };
 	private TeacherCollectionView teacherCollectionView;
 	private ITeacherFormPresenter iTeacherFormPresenter;
 
@@ -52,13 +52,13 @@ public class TeachersCollectionPresenter implements ITeacherCollectionViewPresen
 	public void updateTeacherTableData() {
 
 		teacherCollection = teacherDao.getAll();
-		String[] columns = new String[columnNames.length];
-		String[][] tableData = new String[teacherCollection.size()][columnNames.length];
+		String[] columns = new String[COLUMN_NAMES.length];
+		String[][] tableData = new String[teacherCollection.size()][COLUMN_NAMES.length];
 		for (int i = 0; i < columns.length; i++) {
-			columns[i] = columnNames[i];
+			columns[i] = COLUMN_NAMES[i];
 		}
 		for (int i = 0; i < teacherCollection.size(); i++) {
-			for (int j = 0; j < columnNames.length; j++) {
+			for (int j = 0; j < COLUMN_NAMES.length; j++) {
 				tableData[i][j] = getTeacherAtribute(j, i);
 			}
 		}

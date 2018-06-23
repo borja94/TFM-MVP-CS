@@ -23,6 +23,8 @@ public class TeacherFormView extends JPanel {
 
 	private static final String NEW_TEACHER_LABEL_TEXT = "Nuevo profesor";
 	private static final String ID_SUBJECT_SEPARATOR = "#";
+	private int teacherSelectedId;
+
 
 	private JLabel teacherFormLabel;
 	private JButton addSubjectButton;
@@ -38,14 +40,13 @@ public class TeacherFormView extends JPanel {
 	private JLabel assignSubjectInputLabel;
 	private JScrollPane unassignSubjectsScrollPane;
 	private JScrollPane assignSubjectPane;
-	private boolean editMode;
-	private int teacherSelectedId;
 
 	public TeacherFormView(ITeacherFormViewPresenter teacherFormViewPresenter) {
 		initComponents();
 		iTeacherFormViewPresenter = teacherFormViewPresenter;
 		iTeacherFormViewPresenter.setTeacherFormView(this);
 		updateSubjectList();
+		teacherSelectedId = -1;
 	}
 
 	private void initComponents() {
@@ -71,17 +72,17 @@ public class TeacherFormView extends JPanel {
 		teacherFormLabel.setText(NEW_TEACHER_LABEL_TEXT);
 
 		addSubjectButton.setText("-->");
-		addSubjectButton.addActionListener(e->onAddSubjectButtonActionPerformed());
+		addSubjectButton.addActionListener(e -> onAddSubjectButtonActionPerformed());
 
 		removeSubjectButton.setText("<--");
-		removeSubjectButton.addActionListener(e->onRemoveSubjectButtonActionPerformed());
+		removeSubjectButton.addActionListener(e -> onRemoveSubjectButtonActionPerformed());
 
 		unassignSubjectsInputLabel.setText("Asignaturas");
 
 		assignSubjectInputLabel.setText("Asignaturas seleccionadas");
 
 		saveFormButton.setText("Guardar");
-		saveFormButton.addActionListener(e->onSaveFormButtonActionPerformed());
+		saveFormButton.addActionListener(e -> onSaveFormButtonActionPerformed());
 
 		unassignSubjectsScrollPane.setViewportView(unassignSubjectCollection);
 
@@ -184,7 +185,7 @@ public class TeacherFormView extends JPanel {
 		String surname = surnameInput.getText();
 
 		if (!name.isEmpty() && !surname.isEmpty()) {
-			if (editMode)
+			if (teacherSelectedId!=-1)
 				iTeacherFormViewPresenter.updateTeacher();
 			else
 				iTeacherFormViewPresenter.insertNewTeacher();
@@ -219,8 +220,7 @@ public class TeacherFormView extends JPanel {
 		teacherFormLabel.setText(NEW_TEACHER_LABEL_TEXT);
 		nameInput.setText("");
 		surnameInput.setText("");
-		editMode = false;
-		teacherSelectedId = 0;
+		teacherSelectedId = -1;
 	}
 
 	public void setEditTeacher(Teacher teacher) {

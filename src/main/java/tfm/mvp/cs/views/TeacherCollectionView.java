@@ -41,13 +41,13 @@ public class TeacherCollectionView extends JPanel {
 		tableScrollPane.setViewportView(teachersTable);
 
 		deleteTeacherButton.setText("Borrar");
-		deleteTeacherButton.addActionListener(e->onDeleteTeacherButtonActionPerformed());
+		deleteTeacherButton.addActionListener(e -> onDeleteTeacherButtonActionPerformed());
 
 		editTeacherButton.setText("Modo edición");
-		editTeacherButton.addActionListener(e->onEditTeacherButtonActionPerformed());
+		editTeacherButton.addActionListener(e -> onEditTeacherButtonActionPerformed());
 
 		newTeacherButton.setText("Nuevo profesor");
-		newTeacherButton.addActionListener(e->onNewTeacherButtonActionPerformed());
+		newTeacherButton.addActionListener(e -> onNewTeacherButtonActionPerformed());
 
 		initComponentPostions();
 	}
@@ -92,44 +92,8 @@ public class TeacherCollectionView extends JPanel {
 		iTeacherCollectionPresenter.newTeacher();
 	}
 
-	public JButton getDeleteTeacherButton() {
-		return deleteTeacherButton;
-	}
-
-	public void setDeleteTeacherButton(JButton deleteTeacherButton) {
-		this.deleteTeacherButton = deleteTeacherButton;
-	}
-
-	public JButton getEditTeacherButton() {
-		return editTeacherButton;
-	}
-
-	public void setEditTeacherButton(JButton editTeacherButton) {
-		this.editTeacherButton = editTeacherButton;
-	}
-
-	public JButton getNewTeacherButton() {
-		return newTeacherButton;
-	}
-
-	public void setNewTeacherButton(JButton newTeacherButton) {
-		this.newTeacherButton = newTeacherButton;
-	}
-
 	public JTable getTeachersTable() {
 		return teachersTable;
-	}
-
-	public void setTeachersTable(JTable teachersTable) {
-		this.teachersTable = teachersTable;
-	}
-
-	public JScrollPane getTableScrollPane() {
-		return tableScrollPane;
-	}
-
-	public void setTableScrollPane(JScrollPane tableScrollPane) {
-		this.tableScrollPane = tableScrollPane;
 	}
 
 	public TableModel getTeachersTableModel() {

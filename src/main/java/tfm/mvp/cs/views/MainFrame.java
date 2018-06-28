@@ -3,19 +3,23 @@ package tfm.mvp.cs.views;
 
 import javax.swing.JFrame;
 
-public class MenuFrame extends JFrame {
+import tfm.mvp.cs.presenters.MainPresenter;
+
+public class MainFrame extends JFrame {
 
 	private SubjectsFrame subjectsFrame;
 	private TeachersFrame teacherFrame;
 	private StudentsFrame studentsFrame;
 
-	public MenuFrame() {
-		MenuPanel menuPanel = new MenuPanel();
+	public MainFrame() {
+		MainPresenter mainPresenter = new MainPresenter();
+		MainView menuPanel = new MainView(mainPresenter);
 		this.setContentPane(menuPanel);
 		initComponents();
 		subjectsFrame = new SubjectsFrame(this);
 		teacherFrame = new TeachersFrame(this);
 		studentsFrame = new StudentsFrame(this);
+		
 
 		menuPanel.getStudentFrameButton().addActionListener(e->studentFrameButtonAction());
 

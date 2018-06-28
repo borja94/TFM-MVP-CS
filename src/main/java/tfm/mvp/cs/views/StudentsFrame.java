@@ -13,13 +13,13 @@ import javax.swing.JFrame;
 
 public class StudentsFrame extends JFrame {
 
-	private MenuFrame menuFrame;
+	private MainFrame menuFrame;
 
 	private StudentFormView studentFormView;
 	private StudentsCollectionView studentsCollectionView;
 
 
-	public StudentsFrame(MenuFrame menuFrame) {
+	public StudentsFrame(MainFrame menuFrame) {
 		StudentFormPresenter studentFormPresenter = new StudentFormPresenter();
 		StudentsCollectionPresenter studentCollectionPresenter = new StudentsCollectionPresenter();
 		
